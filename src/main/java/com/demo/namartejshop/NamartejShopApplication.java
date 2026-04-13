@@ -7,7 +7,9 @@ import com.demo.namartejshop.repository.TiendasRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 // Una clase con @ entity equivale a una tabla de base de datos
 // Un objeto equivale a una fila en una tabla de base de datos
@@ -77,6 +79,66 @@ public class NamartejShopApplication {
         for (Employee empleado : employees) {  //bucle foreach para imprimir cada empleado por separado
             System.out.println(empleado);
         }
+
+        // saveAll
+        Tiendas t1 = new Tiendas("t1", 11.5, 6);
+        Tiendas t2 = new Tiendas("t2", 15.0, 7);
+
+        // Opción clasica para crear lista:
+        List<Tiendas> tiendasTrending = new ArrayList<>(); // Crear una lista vacía
+        tiendasTrending.add(t1); //Añadir una tienda a la lista
+        tiendasTrending.add(t2); // añadir una tienda a la lista
+        List<String> alumnos = new ArrayList<>(); // Crear una lista vacia
+        List<Double> precios = new ArrayList<>(); // Crear una lista vacia
+
+        //Opcion moderna para crear lista:
+        List<Tiendas> sitiosGuaposParaComprar = List.of(t1,t2);
+        tiendasRepository.saveAll(sitiosGuaposParaComprar);
+
+        // count () para contar cuantas filas hay en la tabla:
+        long numeroTiendas = tiendasRepository.count();
+        if ( numeroTiendas > 0) {
+            System.out.println("Hay " + numeroTiendas + " tiendas en la base de datos");
+        } else {
+            System.out.println("No hay tiendas en la base de datos");
+        }
+
+       //existById devuelve boolean
+        boolean existencia = tiendasRepository.existsById(1L);
+        if(existencia)
+            System.out.println("Existe la tienda 1");
+        else
+            System.out.println("No existe la tienda 1");
+
+
+        //deleteAll borrar todas las filas de la tabla
+        // tiendasRepository.deleteAll();
+
+        // deleteById borrar una fila indicando si id, 1, 2, 3
+        tiendasRepository.deleteById(1L); // hard code
+        //tiendasRepository.deleteById(tien1.getId()); // para llamar en este caso una tienda en especifica de las existentes
+
+        // delete, borra pasando el objeto
+        tiendasRepository.delete(t2);
+        // tiendasRepository.deleteByName("t1"); // no funciona porque no existe un metodo deleteByName en el repositorio, solo deleteById
+
+
+        // findById traer una tienda por su id, devuelve un Optional
+        Long idABuscar = 2L;
+        // var tiendaOptional = tiendasRepository.findById(idABuscar);
+        Optional<Tiendas> tienda2Optional = tiendasRepository.findById(idABuscar);
+        if (tienda2Optional.isPresent()){
+            Tiendas tienda2 = tienda2Optional.get();
+            System.out.println(tienda2);
+        }
+        // if (tiendaOptional.isPresent()) {
+        // System.out.println("La tienda con id 2 es: " + tiendaOptional.get());
+        //} else {
+        //    System.out.println("No existe la tienda con id 2");
+
+
+
+
 
 
     }

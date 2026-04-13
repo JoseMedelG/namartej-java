@@ -1,6 +1,9 @@
 package com.demo.namartejshop.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Tiendas_España")
@@ -19,6 +22,15 @@ public class Tiendas {
 
     private Integer numberEmployees;
 
+    // fecha fundación
+    @CreationTimestamp
+    private LocalDate starDate = LocalDate.now();
+
+    // tipo de ropa
+    @Enumerated(EnumType.STRING)
+    private ClothesType clothesType = ClothesType.Streetwear;
+
+
     // metodo constructor para crear Tiendas con valores
     public Tiendas(String name, Double averageprice, Integer numberEmployees) {
         this.name = name;
@@ -29,7 +41,7 @@ public class Tiendas {
     public Tiendas(){
 
     }
-
+    // Metodos Getter y Setter
     public Long getId() {
         return id;
     }
@@ -66,10 +78,25 @@ public class Tiendas {
         return numberEmployees;
     }
 
+    public LocalDate getStarDate() {
+        return starDate;
+    }
+    public void setStarDate(LocalDate starDate) {
+        this.starDate = starDate;
+    }
+    public ClothesType getClothesType() {
+        return clothesType;
+    }
+
+    public void setClothesType(ClothesType clothesType) {
+        this.clothesType = clothesType;
+    }
+
     public void setNumberEmployees(Integer numberEmployees) {
         this.numberEmployees = numberEmployees;
     }
  // creamos un toString para que aparezacn datos en la terminal
+
     @Override
     public String toString() {
         return "Tiendas{" +
@@ -78,6 +105,8 @@ public class Tiendas {
                 ", averageprice=" + averageprice +
                 ", active=" + active +
                 ", numberEmployees=" + numberEmployees +
+                ", starDate=" + starDate +
+                ", clothesType=" + clothesType +
                 '}';
     }
 }
