@@ -1,5 +1,6 @@
 package com.demo.namartejshop;
 
+import com.demo.namartejshop.model.ClothesType;
 import com.demo.namartejshop.model.Employee;
 import com.demo.namartejshop.model.Tiendas;
 import com.demo.namartejshop.repository.EmployeeRepository;
@@ -131,10 +132,19 @@ public class NamartejShopApplication {
             Tiendas tienda2 = tienda2Optional.get();
             System.out.println(tienda2);
         }
-        // if (tiendaOptional.isPresent()) {
-        // System.out.println("La tienda con id 2 es: " + tiendaOptional.get());
-        //} else {
-        //    System.out.println("No existe la tienda con id 2");
+
+        //Crear una coleccion nueva
+        Tiendas classicCollection = new Tiendas();
+        classicCollection.setClothesType(ClothesType.classic);
+        tiendasRepository.save(classicCollection);
+        System.out.println(classicCollection);
+
+
+        // Crear una colección de streetwear
+        Tiendas streetColletion = new Tiendas();
+        streetColletion.setClothesType(ClothesType.Streetwear);
+        tiendasRepository.save(streetColletion);
+        System.out.println(streetColletion);
 
 
 
