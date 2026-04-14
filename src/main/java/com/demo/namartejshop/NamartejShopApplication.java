@@ -182,11 +182,27 @@ public class NamartejShopApplication {
         n4.setDni("12345678C");
         n4.setTienda(segovia);
         employeeRepository.save(n4);
+        System.out.println(n4);
 
 
         Employee n5 = new Employee("Miguel", "Rosas", 26, "73637221B");
         n5.setTienda(segovia);
         employeeRepository.save(n5);
+        System.out.println(n5);
+
+
+        // Bucle for para iterar sobre todos los empleados imprimiendo el nombre del empleado y el
+        // nombre de la tienda a la que está asociado
+        for (Employee empleado : employeeRepository.findAll()){
+          //  System.out.println("Empleado: " + empleado.getFirstName() + "trabaja en: " + empleado.getTienda().getName());
+            if(empleado.getTienda() != null) {
+                System.out.println("Empleado: " + empleado.getFirstName() + " trabaja en: " + empleado.getTienda().getName());
+            } else {
+                System.out.println("Empleado: " + empleado.getFirstName() + " no tiene tienda asignada");
+            }
+        }
+
+
 
 
 

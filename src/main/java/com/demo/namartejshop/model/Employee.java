@@ -89,7 +89,7 @@ public class Employee {
                 ", dni='" + dni + '\'' +
                 // si el restaurante es null entonces hace NULL.getId() y da error
                 // ", tienda="  + tienda.getId() +   y se corrige de la siguiente forma
-                ", tienda=" + (tienda.getId() != null ? tienda.getId() : null) +
+                ", tienda=" + (tienda != null ? tienda.getId() : null) +
                 '}';
     }
 }
