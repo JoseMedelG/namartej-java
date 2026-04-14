@@ -15,6 +15,17 @@ public class Employee {
     private Integer age;
     private String dni;
 
+    @ManyToOne
+    private Tiendas tienda;
+
+    public Tiendas getTienda() {
+        return tienda;
+    }
+
+    public void setTienda(Tiendas tienda) {
+        this.tienda = tienda;
+    }
+
     // constructor con parámetros
     public Employee(String firstName, String lastName, Integer age, String dni) {
         this.firstName = firstName;
@@ -68,7 +79,6 @@ public class Employee {
         this.dni = dni;
     }
 
-    // constructor toString
     @Override
     public String toString() {
         return "Employee{" +
@@ -77,6 +87,7 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", dni='" + dni + '\'' +
+                ", tienda=" + tienda.getId() +
                 '}';
     }
 }

@@ -168,6 +168,35 @@ public class NamartejShopApplication {
 
 
 
+        //ManyToOne - Asociar una tienda a dos empleados
+        // paso 1: Crear restaurantes y guardarlo
+        Tiendas segovia = new Tiendas();
+        segovia.setName("Tienda Segovia");
+        tiendasRepository.save(segovia);
+        System.out.println(segovia);
+
+        // paso 2: crear empleados, setTiendas y guardar
+        Employee n4 = new Employee();
+        n4.setFirstName("Juan");
+        n4.setLastName("Lopez");
+        n4.setDni("12345678C");
+        n4.setTienda(segovia);
+        employeeRepository.save(n4);
+
+
+        Employee n5 = new Employee("Miguel", "Rosas", 26, "73637221B");
+        n5.setTienda(segovia);
+        employeeRepository.save(n5);
+
+
+
+
+
+
+
+
+
+
 
 
     }
