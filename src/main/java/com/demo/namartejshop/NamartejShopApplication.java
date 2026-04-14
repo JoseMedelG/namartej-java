@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDate;
 
 // Una clase con @ entity equivale a una tabla de base de datos
 // Un objeto equivale a una fila en una tabla de base de datos
@@ -133,18 +134,36 @@ public class NamartejShopApplication {
             System.out.println(tienda2);
         }
 
-        //Crear una coleccion nueva
+        //Crear una coleccion nueva DE ROPA CON EL ENUM
         Tiendas classicCollection = new Tiendas();
+        classicCollection.setName("Classic winter");
         classicCollection.setClothesType(ClothesType.classic);
         tiendasRepository.save(classicCollection);
         System.out.println(classicCollection);
 
 
-        // Crear una colección de streetwear
+        // Crear una colección de streetwear (Si intento poner otra coleccion que no este en la carpeta de enum, no me dejara)
         Tiendas streetColletion = new Tiendas();
+        streetColletion.setName("Street winter");
         streetColletion.setClothesType(ClothesType.Streetwear);
         tiendasRepository.save(streetColletion);
         System.out.println(streetColletion);
+
+
+        //Probar fecha de startDate del restaurante
+        Tiendas starCollection = new Tiendas();
+        starCollection.setName("starCollection winter");
+        starCollection.setStarDate(LocalDate.now());
+        tiendasRepository.save(starCollection);
+        System.out.println(starCollection);
+
+
+        // fecha futura
+        Tiendas getafe = new Tiendas();
+        getafe.setName("Tienda getafe");
+        getafe.setStarDate(LocalDate.of(2026, 5, 15));
+        tiendasRepository.save(getafe);
+        System.out.println(getafe);
 
 
 

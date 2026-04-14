@@ -23,8 +23,9 @@ public class Tiendas {
     private Integer numberEmployees;
 
     // fecha fundación
-    @CreationTimestamp
-    private LocalDate starDate = LocalDate.now();
+    //@CreationTimestamp // esta anotacion es para que la base de datos genere automaticamente la fecha sin
+    // precuparte por tener que cambiarla
+    private LocalDate starDate = LocalDate.now(); // Valor por defecto de la fecha actual
 
     // tipo de ropa
     @Enumerated(EnumType.STRING)
