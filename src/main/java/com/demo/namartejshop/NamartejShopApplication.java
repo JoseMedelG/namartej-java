@@ -202,6 +202,14 @@ public class NamartejShopApplication {
             }
         }
 
+        // Probar a filtrar
+       // List<Employee> emploeados20 = employeeRepository.findByAge(20);
+        List<Employee> empleadosmadrid = employeeRepository.findByTienda_Name("Segovia");
+        System.out.println(empleadosmadrid);
+
+        //employeeRepository.findByDni("");
+
+
 
 
 
