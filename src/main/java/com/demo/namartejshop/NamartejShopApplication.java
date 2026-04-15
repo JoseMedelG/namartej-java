@@ -52,11 +52,11 @@ public class NamartejShopApplication {
         Employee numero1 = new Employee();
         numero1.setFirstName("Juan");
         numero1.setLastName("Perez");
-        numero1.setAge(30);
+        numero1.setAge(20);
         numero1.setDni("12345678A");
         employeeRepository.save(numero1);
 
-        Employee numero2 = new Employee("Jose", "García", 27, "38470123B");
+        Employee numero2 = new Employee("Jose", "García", 18, "38470123B");
         employeeRepository.save(numero2);
 
         // Crear un empleado y guardarlo en base de datos
@@ -172,6 +172,7 @@ public class NamartejShopApplication {
         // paso 1: Crear restaurantes y guardarlo
         Tiendas segovia = new Tiendas();
         segovia.setName("Tienda Segovia");
+        segovia.setClothesType(ClothesType.Streetwear);
         tiendasRepository.save(segovia);
         System.out.println(segovia);
 
@@ -180,6 +181,7 @@ public class NamartejShopApplication {
         n4.setFirstName("Juan");
         n4.setLastName("Lopez");
         n4.setDni("12345678C");
+        n4.setAge(18);
         n4.setTienda(segovia);
         employeeRepository.save(n4);
         System.out.println(n4);
@@ -206,8 +208,18 @@ public class NamartejShopApplication {
        // List<Employee> emploeados20 = employeeRepository.findByAge(20);
         List<Employee> empleadosmadrid = employeeRepository.findByTienda_Name("Segovia");
         System.out.println(empleadosmadrid);
-
         //employeeRepository.findByDni("");
+
+        System.out.println("FILTRAR EMPLEADOS POR TIPO DE ROPA");
+        for (var e : employeeRepository.findByTienda_ClothesType(ClothesType.Streetwear))
+            System.out.println(e);
+
+
+        System.out.println("FILTRAR EMPLEADOS POR EDAD MAYOR O IGUAL QUE");
+        for (var e : employeeRepository.findByAgeGreaterThanEqual(20))
+            System.out.println(e);
+
+
 
 
 
