@@ -1,9 +1,6 @@
 package com.demo.namartejshop;
 
-import com.demo.namartejshop.model.ClothesType;
-import com.demo.namartejshop.model.Employee;
-import com.demo.namartejshop.model.Productos;
-import com.demo.namartejshop.model.Tiendas;
+import com.demo.namartejshop.model.*;
 import com.demo.namartejshop.repository.EmployeeRepository;
 import com.demo.namartejshop.repository.TiendasRepository;
 import com.demo.namartejshop.repository.ProductosRepository;
@@ -229,10 +226,23 @@ public class NamartejShopApplication {
         String nombre = "Jose";
 
         // Crear un par de productos y guardarlos en la base de datos
-        Productos jeansgris = new Productos(null, "jeansgris", "El mejor de todos los tiempos", 30.99, ClothesType.Streetwear,getafe);
-        Productos camisetablanca = new Productos(null, "camiseta white", "Sin manchas", 7.99, ClothesType.classic,segovia);
-        Productos glasses = new Productos(null, "Gafas negras", "proteccion del sol", 15.0, ClothesType.classic,segovia);
-        productosRepository.saveAll(List.of(jeansgris, camisetablanca, glasses));
+        Productos jeansgris = new Productos(null, "jeansgris", "El mejor de todos los tiempos", 30.99, ProductType.Jeans,getafe);
+        Productos camisetablanca = new Productos(null, "camiseta white", "Sin manchas", 7.99, ProductType.Camiseta,segovia);
+        Productos glasses = new Productos(null, "Gafas negras", "proteccion del sol", 15.0, ProductType.Accesorios,segovia);
+        Productos anillo = new Productos(null, "anillo oro", "18k", 390.90, ProductType.Accesorios,getafe);
+        productosRepository.saveAll(List.of(jeansgris, camisetablanca, glasses, anillo));
+
+
+        //Para tarer productos menores o igual a 20.80
+        for(var produ: productosRepository.findByPriceLessThanEqual(20.80))
+            System.out.println(produ);
+        // que traiga los productos de una tienda ordenados por precio ascendente findAllBy
+
+        System.out.println("TRAER PRODUCTOS DE UNA TIENDA ORDENADAS DE FORMA ASCENDENTE");
+        Long tiendaId = tien3.getId();
+        for(var produ: productosRepository.findByTienda_IdOrderByPrice(tiendaId))
+            System.out.println(produ);
+
 
 
 

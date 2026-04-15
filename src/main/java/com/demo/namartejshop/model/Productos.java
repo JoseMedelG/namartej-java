@@ -2,7 +2,6 @@ package com.demo.namartejshop.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
 
 
 @Entity
@@ -20,20 +19,22 @@ public class Productos {
 
     private Double price;
 
+    // private Integer quantity;
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "clothes_type")
-    private ClothesType clothesType;
+    @Column(name = "product_type")
+    private ProductType productType;
 
     @ManyToOne
     private Tiendas tienda;
 
     public Productos() {}
-    public Productos(Long id, String nameProduct, String description, Double price, ClothesType clothesType, Tiendas tienda) {
+    public Productos(Long id, String nameProduct, String description, Double price, ProductType productType, Tiendas tienda) {
         this.id = id;
         this.nameProduct = nameProduct;
         this.description = description;
         this.price = price;
-        this.clothesType = clothesType;
+        this.productType = productType;
         this.tienda = tienda;
     }
 
@@ -70,15 +71,13 @@ public class Productos {
         this.price = price;
     }
 
-    public ClothesType getClothesType() {
-        return clothesType;
+    public ProductType getProductType() {
+        return productType;
     }
 
-    public void setClothesType(ClothesType clothesType) {
-        this.clothesType = clothesType;
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
-
-
 
     public Tiendas getTienda() {
         return tienda;
@@ -89,6 +88,7 @@ public class Productos {
     }
 
     // toString
+
     @Override
     public String toString() {
         return "Productos{" +
@@ -96,7 +96,7 @@ public class Productos {
                 ", nameProduct='" + nameProduct + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", clothesType=" + clothesType +
+                ", productType=" + productType +
                 ", tienda=" + tienda +
                 '}';
     }

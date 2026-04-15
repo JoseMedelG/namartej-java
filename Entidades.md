@@ -22,7 +22,7 @@
  + Streetwear
 
 
-* Stock (Productos) (Pendiente por hacer)
+* Stock (Productos) 
  * Long id 
  * String nameProduct
  * String description
@@ -31,13 +31,13 @@
  * Tiendas tienda (ManyToOne) (Asociación)
 
 
-* order (Pedido)
+* order (Pedido) (Pendiente por hacer)
  * fecha pedido
  * LocalDate orderDate
  * String marca
  * double totalPrice
  * String description
- * estado (enum: PENDIENTE, EN_PROCESO, ENVIADO, ENTREGADO, CANCELADO, DEVUELTO)
+ * estado (enum: PENDIENTE, EN_PROCESO, ENVIADO, ENTREGADO, DEVUELTO, CANCELADO)
  * asociaciones
   * tiendas (ManyToOne)
   * user (ManyToOne)
