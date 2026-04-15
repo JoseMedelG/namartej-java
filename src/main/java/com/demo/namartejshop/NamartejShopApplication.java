@@ -2,9 +2,11 @@ package com.demo.namartejshop;
 
 import com.demo.namartejshop.model.ClothesType;
 import com.demo.namartejshop.model.Employee;
+import com.demo.namartejshop.model.Productos;
 import com.demo.namartejshop.model.Tiendas;
 import com.demo.namartejshop.repository.EmployeeRepository;
 import com.demo.namartejshop.repository.TiendasRepository;
+import com.demo.namartejshop.repository.ProductosRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -25,6 +27,7 @@ public class NamartejShopApplication {
         // obtener repositorios para poder hacer operaciones de base de datos con ellos
         TiendasRepository tiendasRepository = context.getBean(TiendasRepository.class);
         EmployeeRepository employeeRepository = context.getBean(EmployeeRepository.class);
+        ProductosRepository productosRepository = context.getBean(ProductosRepository.class);
 
         // crear un objeto restaurante y guardarlo en la base de datos: new
         Tiendas namartej = new Tiendas();
@@ -222,6 +225,18 @@ public class NamartejShopApplication {
         System.out.println("TRAER TODOS LOS EMPLEADOS ORDENADOS POR NOMBRE ASCENDENTE");
         for (var e : employeeRepository.findByOrderByFirstNameAsc())
             System.out.println(e);
+
+        String nombre = "Jose";
+
+        // Crear un par de productos y guardarlos en la base de datos
+        Productos jeansgris = new Productos(null, "jeansgris", "El mejor de todos los tiempos", 30.99, ClothesType.Streetwear,getafe);
+        Productos camisetablanca = new Productos(null, "camiseta white", "Sin manchas", 7.99, ClothesType.classic,segovia);
+        Productos glasses = new Productos(null, "Gafas negras", "proteccion del sol", 15.0, ClothesType.classic,segovia);
+        productosRepository.saveAll(List.of(jeansgris, camisetablanca, glasses));
+
+
+
+
 
 
 

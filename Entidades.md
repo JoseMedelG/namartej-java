@@ -21,27 +21,36 @@
  + Classic
  + Streetwear
 
-* Proximamente
- * Stock (zapatos, camisas, sudaderas, complementos, busiteria)
 
- * order (Pedido)
- * long id
+* Stock (Productos) (Pendiente por hacer)
+ * Long id 
+ * String nameProduct
+ * String description
+ * double price
+ * ProductType type (enum: zapatos, camisas, sudaderas, complementos, etc)
+ * Tiendas tienda (ManyToOne) (Asociación)
+
+
+* order (Pedido)
+ * fecha pedido
  * LocalDate orderDate
  * String marca
- * double price
+ * double totalPrice
  * String description
+ * estado (enum: PENDIENTE, EN_PROCESO, ENVIADO, ENTREGADO, CANCELADO, DEVUELTO)
  * asociaciones
- * tiendas (ManyToOne)
- * user (ManyToOne)
+  * tiendas (ManyToOne)
+  * user (ManyToOne)
+  * List<Product> productos (ManyToMany)
 
 
 * Review
-* long id
-* String comment
-* Integer rating
-* LocalDate reviewDate
-* asociaciones
-* tiendas (ManyToOne)
-* user (ManyToOne)
-* 
-* 
+ * long id
+ * String comment
+ * Integer rating
+ * LocalDate reviewDate
+ * asociaciones
+ * tiendas (ManyToOne)
+ * user (ManyToOne)
+ * 
+ * 
