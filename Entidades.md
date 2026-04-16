@@ -26,18 +26,18 @@
  * Long id 
  * String nameProduct
  * String description
- * double price
+ * Double price
  * ProductType type (enum: zapatos, camisas, sudaderas, complementos, etc)
  * Tiendas tienda (ManyToOne) (Asociación)
 
 
-* order (Pedido) (Pendiente por hacer)
- * fecha pedido
- * LocalDate orderDate
+* order (Pedido) (NUEVO)
+ * Long id
+ * LocalDateTime fecha
  * String marca
  * double totalPrice
  * String description
- * estado (enum: PENDIENTE, EN_PROCESO, ENVIADO, ENTREGADO, DEVUELTO, CANCELADO)
+ * estado (enum: RECIBIDO, EN_PROCESO, ENVIADO, ENTREGADO, DEVUELTO, CANCELADO)
  * asociaciones
   * tiendas (ManyToOne)
   * user (ManyToOne)
