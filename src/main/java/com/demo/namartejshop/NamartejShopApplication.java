@@ -2,6 +2,7 @@ package com.demo.namartejshop;
 
 import com.demo.namartejshop.model.*;
 import com.demo.namartejshop.repository.EmployeeRepository;
+import com.demo.namartejshop.repository.OrderRepository;
 import com.demo.namartejshop.repository.TiendasRepository;
 import com.demo.namartejshop.repository.ProductosRepository;
 import org.springframework.boot.SpringApplication;
@@ -25,6 +26,7 @@ public class NamartejShopApplication {
         TiendasRepository tiendasRepository = context.getBean(TiendasRepository.class);
         EmployeeRepository employeeRepository = context.getBean(EmployeeRepository.class);
         ProductosRepository productosRepository = context.getBean(ProductosRepository.class);
+        OrderRepository orderRepository = context.getBean(OrderRepository.class);
 
         // crear un objeto restaurante y guardarlo en la base de datos: new
         Tiendas namartej = new Tiendas();
@@ -244,6 +246,16 @@ public class NamartejShopApplication {
             System.out.println(produ);
 
 
+        //Crear un pedido
+        Order pedido1 = new Order();
+        pedido1.setCustomerName("Flor");
+        pedido1.setCustomerEmail("Flor123@gmail.com");
+        pedido1.setCustomerAddress("Calle Falsa 123");
+        pedido1.setTiendas(tien2);
+        orderRepository.save(pedido1);
+
+        Order pedido2 = new Order("Michelle", "Michelle123@hotmail.com", "Calle verdad 123",45.90, tien2);
+        orderRepository.save(pedido2);
 
 
 

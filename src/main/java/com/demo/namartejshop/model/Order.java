@@ -20,7 +20,7 @@ public class Order {
     private Double totalPrice;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus status = OrderStatus.RECIBIDO;
+    private OrderStatus status = OrderStatus.ORDEN_RECIBIDA; //Cambie el nombre de RECIBIDO a ORDEN_RECIBIDA por entendimiento
 
     @ManyToOne
     private Tiendas tiendas;
