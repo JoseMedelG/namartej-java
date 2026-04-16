@@ -263,12 +263,19 @@ public class NamartejShopApplication {
         OrderLine tresCamisetas = new OrderLine(3, pedido1, camisetablanca);
         OrderLine dosAnillos = new OrderLine(2, pedido1, anillo);
         OrderLine unglasses = new OrderLine(1, pedido1, glasses);
-        orderLineRepository.saveAll(List.of(unJeans, tresCamisetas, dosAnillos, unglasses));
+       List<OrderLine> lineasPedido = orderLineRepository.saveAll(List.of(unJeans, tresCamisetas, dosAnillos, unglasses));
 
         // Calcular el precio total en java:
-       // for ( var precioToatl)
+        double totalPrice = 0.0;
+        for (OrderLine lineaPedido : lineasPedido){
+           double precioLinea = lineaPedido.getProductos().getPrice() * lineaPedido.getQuantity();
+           totalPrice += precioLinea;
+        }
+        pedido1.setTotalPrice(totalPrice);
+        orderRepository.save(pedido1);
 
         // Calcular precio total directamente en base de datos con una query
+
 
 
 

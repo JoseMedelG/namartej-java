@@ -81,6 +81,13 @@ public class Order {
         this.customerName = customerName;
     }
 
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     // toString (No puse la tienda porque
     @Override
