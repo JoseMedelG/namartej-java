@@ -1,6 +1,6 @@
 package com.demo.namartejshop.repository;
 
-import com.demo.namartejshop.model.ClothesType;
+import com.demo.namartejshop.model.enums.ClothesType;
 import com.demo.namartejshop.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

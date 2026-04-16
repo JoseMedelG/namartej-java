@@ -1,7 +1,7 @@
 package com.demo.namartejshop.model;
 
+import com.demo.namartejshop.model.enums.ClothesType;
 import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 

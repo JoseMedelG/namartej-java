@@ -44,6 +44,15 @@
   * List<Product> productos (ManyToMany)
 
 
+* OrderLine [pendiente]
+ * Long id
+ * Integer quantity
+ * Asociaciones
+    * Productos productos (ManyToOne)
+    * order order (ManyToOne)
+
+
+
 * Review
  * long id
  * String comment

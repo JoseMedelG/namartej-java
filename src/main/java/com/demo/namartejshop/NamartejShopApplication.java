@@ -1,10 +1,9 @@
 package com.demo.namartejshop;
 
 import com.demo.namartejshop.model.*;
-import com.demo.namartejshop.repository.EmployeeRepository;
-import com.demo.namartejshop.repository.OrderRepository;
-import com.demo.namartejshop.repository.TiendasRepository;
-import com.demo.namartejshop.repository.ProductosRepository;
+import com.demo.namartejshop.model.enums.ClothesType;
+import com.demo.namartejshop.model.enums.ProductType;
+import com.demo.namartejshop.repository.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -27,6 +26,7 @@ public class NamartejShopApplication {
         EmployeeRepository employeeRepository = context.getBean(EmployeeRepository.class);
         ProductosRepository productosRepository = context.getBean(ProductosRepository.class);
         OrderRepository orderRepository = context.getBean(OrderRepository.class);
+        OrderLineRepository orderLineRepository = context.getBean(OrderLineRepository.class);
 
         // crear un objeto restaurante y guardarlo en la base de datos: new
         Tiendas namartej = new Tiendas();
@@ -256,6 +256,11 @@ public class NamartejShopApplication {
 
         Order pedido2 = new Order("Michelle", "Michelle123@hotmail.com", "Calle verdad 123",45.90, tien2);
         orderRepository.save(pedido2);
+
+
+        // Crear 6 lineas de pedidos, una para cada Order
+
+        //
 
 
 
