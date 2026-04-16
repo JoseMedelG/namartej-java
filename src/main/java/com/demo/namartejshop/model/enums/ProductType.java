@@ -1,4 +1,4 @@
-package com.demo.namartejshop.model;
+package com.demo.namartejshop.model.enums;
 
 public enum ProductType {
     Jeans, Camiseta, Zapatos, Accesorios

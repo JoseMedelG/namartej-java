@@ -1,5 +1,6 @@
 package com.demo.namartejshop.model;
 
+import com.demo.namartejshop.model.enums.ProductType;
 import jakarta.persistence.*;
 
 
