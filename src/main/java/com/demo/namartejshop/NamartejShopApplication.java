@@ -139,7 +139,7 @@ public class NamartejShopApplication {
 
         //Crear una coleccion nueva DE ROPA CON EL ENUM
         Tiendas classicCollection = new Tiendas();
-        classicCollection.setName("Classic winter");
+        classicCollection.setName("Tienda Galicia");
         classicCollection.setClothesType(ClothesType.classic);
         tiendasRepository.save(classicCollection);
         System.out.println(classicCollection);
@@ -147,7 +147,7 @@ public class NamartejShopApplication {
 
         // Crear una colección de streetwear (Si intento poner otra coleccion que no este en la carpeta de enum, no me dejara)
         Tiendas streetColletion = new Tiendas();
-        streetColletion.setName("Street winter");
+        streetColletion.setName("Tienda Mallorca");
         streetColletion.setClothesType(ClothesType.Streetwear);
         tiendasRepository.save(streetColletion);
         System.out.println(streetColletion);
@@ -155,7 +155,7 @@ public class NamartejShopApplication {
 
         //Probar fecha de startDate del restaurante
         Tiendas starCollection = new Tiendas();
-        starCollection.setName("starCollection winter");
+        starCollection.setName("Tienda Sevilla");
         starCollection.setStarDate(LocalDate.now());
         tiendasRepository.save(starCollection);
         System.out.println(starCollection);

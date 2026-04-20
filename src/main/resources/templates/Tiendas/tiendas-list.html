@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en-ES" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado Tiendas Namartej</title>
+</head>
+<body>
+<h1>Listado de tiendas</h1>
+
+<!-- imprimir numero de tiendas -->
+<ul>
+ <li th:each="tienda : ${tiendas}">
+     <span th:text="${tienda.name}"></span>
+     <span th:text="${tienda.averageprice}"></span>
+
+</ul>
+</body>
+</html>
