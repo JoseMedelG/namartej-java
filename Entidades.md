@@ -44,12 +44,27 @@
   * List<Product> productos (ManyToMany)
 
 
-* OrderLine [pendiente]
+* OrderLine 
  * Long id
  * Integer quantity
  * Asociaciones
     * Productos productos (ManyToOne)
     * order order (ManyToOne)
+
+
+Pasos para el Controller:
+
+* [ok] Crear paquete nuevo llamado controller en com.namartej
+* Crear una clase nueva llamada TiendaController
+  * Anotar la clase con @Controller
+  * crear un constructor que reciba el servicio de Tiendas (TiendaService) 
+  y lo inyecte en un atributo privado final
+  * crear un metodo publico llamado findAll que reciba un Model y devuelva String
+  * Anotar el metodo con @GetMapping("/tiendas")
+  * entro del metodo, usar tiendasRepository.findAll() para obtener la lista de
+  tiendas y guardarla en el Model con model.addAttribute("tiendas", tiendasRepository.findAll())
+  * devolver el nombre de la vista (String) que se va a renderizar, por ejemplo "tiendas"
+
 
 
 

@@ -18,7 +18,7 @@ public class OrderLine {
     @ManyToOne
     private Productos productos;
 
-    // Contrcustor vacio
+    // Constructor vacio
     public OrderLine(){
     }
 

@@ -277,17 +277,9 @@ public class NamartejShopApplication {
         orderRepository.save(pedido1);
 
         // Calcular precio total directamente en base de datos con una query que esta en OrderLineRepository
-        Double totalPrice2 = orderLineRepository.calculateTotalPrice(pedido1.getId());
+        Double totalPrice2 = orderLineRepository.calculateTotalPrice(pedido1.getId()); // Este metodo llama al Query
         System.out.println("Precio totalPrice " + totalPrice);
         System.out.println("Precio totalPrice2 " + totalPrice2);
-
-
-
-
-
-
-
-
 
 
 
