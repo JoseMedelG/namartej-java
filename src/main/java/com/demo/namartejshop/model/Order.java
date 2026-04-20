@@ -89,6 +89,22 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     // toString (No puse la tienda porque
     @Override
     public String toString() {
@@ -102,4 +118,6 @@ public class Order {
                 ", status=" + status +
                 '}';
     }
+
+
 }

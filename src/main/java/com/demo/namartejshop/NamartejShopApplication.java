@@ -2,6 +2,7 @@ package com.demo.namartejshop;
 
 import com.demo.namartejshop.model.*;
 import com.demo.namartejshop.model.enums.ClothesType;
+import com.demo.namartejshop.model.enums.OrderStatus;
 import com.demo.namartejshop.model.enums.ProductType;
 import com.demo.namartejshop.repository.*;
 import org.springframework.boot.SpringApplication;
@@ -258,7 +259,7 @@ public class NamartejShopApplication {
         orderRepository.save(pedido2);
 
 
-        // Crear 6 lineas de pedidos, una para cada Order
+        // Crear lineas de pedidos, una para cada Order
         OrderLine unJeans = new OrderLine(2, pedido1, jeansgris);
         OrderLine tresCamisetas = new OrderLine(3, pedido1, camisetablanca);
         OrderLine dosAnillos = new OrderLine(2, pedido1, anillo);
@@ -272,10 +273,13 @@ public class NamartejShopApplication {
            totalPrice += precioLinea;
         }
         pedido1.setTotalPrice(totalPrice);
+        pedido1.setStatus(OrderStatus.ENTREGADO);   //Se le cambia el estado del pedido como entregado (finalizado)
         orderRepository.save(pedido1);
 
-        // Calcular precio total directamente en base de datos con una query
-
+        // Calcular precio total directamente en base de datos con una query que esta en OrderLineRepository
+        Double totalPrice2 = orderLineRepository.calculateTotalPrice(pedido1.getId());
+        System.out.println("Precio totalPrice " + totalPrice);
+        System.out.println("Precio totalPrice2 " + totalPrice2);
 
 
 
