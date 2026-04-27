@@ -13,6 +13,8 @@
      <span th:text="${tienda.name}"></span>
      <span th:text="${tienda.averageprice}"></span>
 
+    <a th:href="@{/tiendas/{id}(id=${tienda.id})}">Ver tienda</a>
+
 </ul>
 </body>
 </html>

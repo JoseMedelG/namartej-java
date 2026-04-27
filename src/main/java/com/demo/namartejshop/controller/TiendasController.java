@@ -1,24 +1,100 @@
 package com.demo.namartejshop.controller;
 
 
+import com.demo.namartejshop.model.Productos;
+import com.demo.namartejshop.model.Review;
+import com.demo.namartejshop.model.Tiendas;
+import com.demo.namartejshop.repository.ProductosRepository;
+import com.demo.namartejshop.repository.ReviewRepository;
 import com.demo.namartejshop.repository.TiendasRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class TiendasController {
 
-    //Inyectar el tiendas repository
+    // Inyectar repositorios de tiendas y productos
     private final TiendasRepository tiendasRepository;
+    private final ProductosRepository productosRepository;
+    private final ReviewRepository reviewRepository;
 
-    public TiendasController(TiendasRepository tiendasRepository) {
+    public TiendasController(TiendasRepository tiendasRepository, ProductosRepository productosRepository, ReviewRepository reviewRepository) {
         this.tiendasRepository = tiendasRepository;
+        this.productosRepository = productosRepository;
+        this.reviewRepository = reviewRepository;
     }
 
-    @GetMapping("tiendas")
-    public String tiendas(Model model){
-        model.addAttribute("tiendas", tiendasRepository.findAll());
-        return "Tiendas/tiendas-list";
+//    @GetMapping("tiendas")
+//    public String tiendas(Model model){
+//        model.addAttribute("tiendas", tiendasRepository.findAll());
+//        return "Tiendas/tiendas-list";
+//
+//    }
+
+    /*
+    Resumen de métodos típicos en una clase controller:
+    @GetMapping("restaurants") findAll [OK]
+    @GetMapping("restaurants/{id}") findById []
+    @GetMapping("restaurants/delete/{id}") delete []
+
+
+
+    @GetMapping("restaurants/create") createForm
+    @PostMapping("restaurants/create") create
+
+    @GetMapping("restaurants/{id}/edit") editForm
+    @PostMapping("restaurants/{id}/edit") edit
+     */
+
+        // get all restaurants
+        // http://localhost:8080/tiendas
+        @GetMapping("tiendas") // controlador
+        public String tiendasList(Model model) {
+            // cargar datos en el modelo
+            List<Tiendas> tiendas = tiendasRepository.findAll();
+            model.addAttribute("tiendas", tiendas);
+            model.addAttribute("numTiendas", tiendas.size());
+            model.addAttribute("title", "Lista de tiendas");
+            return "Tiendas/tiendas-list"; // vista
+        }
+
+        // nuevo metodo para traer un solo restaurante por su id
+        @GetMapping("tiendas/{id}")
+        public String restaurantDetail(@PathVariable Long id, Model model) {
+
+            // buscar tienda por su id: findById
+            Optional<Tiendas> tiendasOptional = tiendasRepository.findById(id);
+            if (tiendasOptional.isPresent()) {
+
+                // La tienda sí existe
+                Tiendas tienda = tiendasOptional.get();
+                model.addAttribute("tienda", tienda);
+                // opcional:
+                // cargar los productos (Productos) de esta tienda en el model
+                List<Productos> product = productosRepository.
+                        findByTienda_IdOrderByPrice(
+                                tienda.getId());
+                model.addAttribute("product", product);
+
+                //reviews
+                List<Review> reviews = reviewRepository.findByTiendas_IdOrderByCreationDateDesc(tienda.getId());
+                model.addAttribute("reviews", reviews);
+                return "Tiendas/tienda-detail";
+
+            }
+
+            // la tienda NO existe
+            // CUIDADO no apunta a HTML
+            // APUNTA al Controller
+            return "redirect:/tiendas";
+        }
+
+
+
     }
-}
+
