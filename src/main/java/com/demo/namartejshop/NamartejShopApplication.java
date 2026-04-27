@@ -28,6 +28,7 @@ public class NamartejShopApplication {
         ProductosRepository productosRepository = context.getBean(ProductosRepository.class);
         OrderRepository orderRepository = context.getBean(OrderRepository.class);
         OrderLineRepository orderLineRepository = context.getBean(OrderLineRepository.class);
+        ReviewRepository reviewRepository = context.getBean(ReviewRepository.class);
 
         // crear un objeto restaurante y guardarlo en la base de datos: new
         Tiendas namartej = new Tiendas();
@@ -230,7 +231,7 @@ public class NamartejShopApplication {
 
         // Crear un par de productos y guardarlos en la base de datos
         Productos jeansgris = new Productos(null, "jeansgris", "El mejor de todos los tiempos", 30.99, ProductType.Jeans,getafe);
-        Productos camisetablanca = new Productos(null, "camiseta white", "Sin manchas", 7.99, ProductType.Camiseta,segovia);
+        Productos camisetablanca = new Productos(null, "camiseta white", "Sin manchas", 7.99, ProductType.Camisetas,segovia);
         Productos glasses = new Productos(null, "Gafas negras", "proteccion del sol", 15.0, ProductType.Accesorios,segovia);
         Productos anillo = new Productos(null, "anillo oro", "18k", 390.90, ProductType.Accesorios,getafe);
         productosRepository.saveAll(List.of(jeansgris, camisetablanca, glasses, anillo));
@@ -281,7 +282,43 @@ public class NamartejShopApplication {
         System.out.println("Precio totalPrice " + totalPrice);
         System.out.println("Precio totalPrice2 " + totalPrice2);
 
+        // crear cuatro reviews de una tienda usando Builder de lombok
+        Review review1 = Review.builder()
+                .description("Te atienden bien")
+                .tiendas(segovia)
+                .title("Tienda espectacular")
+                .rating(5)
+                .build();
 
+        Review review2 = Review.builder()
+                .description("Nefasto")
+                .tiendas(segovia)
+                .title("Me atendieron mal")
+                .rating(1)
+                .build();
+
+        Review review3 = Review.builder()
+                .description("Ni fu ni fa")
+                .tiendas(segovia)
+                .title("Comí y no me morí")
+                .rating(3)
+                .build();
+
+        reviewRepository.saveAll(List.of(review1, review2, review3));
+
+
+
+        // resumen
+        // findAll
+        // findById
+        // existById
+        // count()
+
+        // save()
+        // saveAll()
+
+        // deleteById
+        // deleteALl
 
 
 

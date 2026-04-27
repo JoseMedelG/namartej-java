@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-ES" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Producto</title>
+</head>
+<body>
+
+<h1 th:text="'Producto'+ ${producto.id}"></h1>
+
+<p th:text="'Nombre: ' + ${producto.name}"></p>
+
+<p th:text="'precio: '${producto.price != null ? product.price + '€ (EUR)' : 'Sin precio'}"></p>
+
+<p th:text ="'Descripción: ' + ${producto.description != null ? producto.description : 'Sin descripción'}"></p>
+
+<!-- switch sobre enum tipo de producto ProductType-->
+<p th:switch="${producto.productType}">
+   <span th:case="${T(com.demo.namartejshop.model.enums.ProductType).Jeans}">Los jeans que te mereces</span>
+   <span th:case="${T(com.demo.namartejshop.model.enums.ProductType).Camisetas}">Camisetas top</span>
+   <span th:case="${T(com.demo.namartejshop.model.enums.ProductType).Zapatos}">Zapatos para pisar con fuerza</span>
+    <span th:case="*">No definido.</span>
+
+</p>
+<p th:if="${producto.tienda != null}">
+    <a th:href="@{/tiendas/{id}(id=${producto.tienda.id})}" th:text="${producto.tienda.name}"></a>
+</p>
+
+</body>
+</html>
