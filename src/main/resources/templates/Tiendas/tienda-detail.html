@@ -1,43 +1,108 @@
 <!DOCTYPE html>
-<html lang="es-ES" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Detalle Restaurante</title>
-</head>
-<body>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/head :: head('Detalle Tienda')}"></head>
+<body class="d-flex flex-column min-vh-100">
 
-<h1 th:text="${tienda.name}"></h1>
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
+<main class="container flex-grow-1">
 
-<p th:text="${tienda.averageprice != null ? tienda.averageprice + ' € (EUR)' : 'Sin precio'}"></p>
+    <!-- Cabecera de la tienda -->
+    <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+            <h1 class="mb-2" th:text="${tienda.name}">Nombre</h1>
+            <span class="badge bg-success me-1">
+                <i class="fa-solid fa-euro-sign me-1"></i>
+                <span th:text="${tienda.averageprice != null ? tienda.averageprice + ' €' : 'Sin precio'}"></span>
+            </span>
+            <span class="badge bg-info text-dark me-1"
+                  th:if="${tienda.numberEmployees != null}"
+                  th:text="${tienda.numberEmployees + ' empleados'}"></span>
+            <span class="badge bg-secondary me-1"
+                  th:unless="${tienda.numberEmployees != null}">Sin empleados</span>
+        </div>
 
+        <span th:if="${tienda.active}" class="badge bg-success fs-6">
+            <i class="fa-solid fa-door-open me-1"></i> ABIERTO
+        </span>
+        <span th:unless="${tienda.active}" class="badge bg-danger fs-6">
+            <i class="fa-solid fa-door-closed me-1"></i> CERRADO
+        </span>
+    </div>
 
-<p th:if="${tienda.numberEmployees != null}" th:text="${tienda.numberEmployees + ' empleados'}"></p>
-<p th:unless="${tienda.numberEmployees != null}">Sin empleados</p>
+    <hr>
+    <!-- Carta de platos / productos tendencia-->
+    <h2 class="mt-4">
+        <i class="fa-solid fa-utensils text-primary me-2"></i> Productos tendencias
+    </h2>
+    <p class="text-muted" th:text="${product.size()} + ' articulos'"></p>
 
-<p th:if="${tienda.active}" style="color:green;">Abierto</p>
-<p th:unless="${tienda.active}" style="color:red;">Cerrado</p>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Tipo</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${product}">
+                <td th:text="${product.id}"></td>
+                <td class="fw-semibold" th:text="${product.nameProduct}"></td>
+                <td class="text-muted small" th:text="${product.description}"></td>
+                <td>
+                    <span class="badge bg-success" th:text="${product.price} + ' €'"></span>
+                </td>
+                <td>
+                    <span class="badge bg-light text-dark border" th:text="${product.productType}"></span>  <!-- averiguar el label que tiene alan en esta linea -->
+                </td>
+                <td>
+                    <a th:href="@{/productos/{id}(id=${product.id})}"
+                       class="btn btn-sm btn-outline-primary">
+                        <i class="fa-regular fa-eye me-1"></i> Ver
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-<!-- resto de atributos del restaurant -->
+    <!-- Opiniones -->
+    <h2 class="mt-5">
+        <i class="fa-regular fa-comments text-primary me-2"></i> Opiniones de nuestros clientes
+    </h2>
+    <div th:if="${reviews.isEmpty()}" class="alert alert-light border">
+        <i class="fa-regular fa-face-smile me-1"></i>
+        Nadie ha comentado todavía, sé el primero en escribir una opinión.
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 g-3" th:unless="${reviews.isEmpty()}">
+        <div class="col" th:each="review : ${reviews}">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${review.title}">Título</h5>
+                    <p class="card-text" th:text="${review.description}">Descripción</p>
+                    <span class="badge bg-warning text-dark">
+                        <i class="fa-solid fa-star me-1"></i>
+                        <span th:text="${review.rating + ' / 5'}"></span>
+                    </span>
+                </div>
+                <div class="card-footer text-muted small bg-transparent">
+                    <i class="fa-regular fa-calendar me-1"></i>
+                    <span th:text="${review.creationDate}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- listado de productos -->
-<p th:text="${product.size()} + ' productos'"></p>
+</main>
 
+<footer th:replace="~{layout/footer :: footer}"></footer>
+<script th:replace="~{layout/footer :: scripts}"></script>
 
-<h2>Opiniones de nuestros clientes</h2>
-
-<p th:if="${reviews.isEmpty()}">Sé el primero en escribir tu opinión</p>
-
-<ul th:unless="${reviews.isEmpty()}">
-    <li th:each="review : ${reviews}">
-
-        <p th:text="${review.title}"></p>
-        <p th:text="${review.description}"></p>
-        <p th:text="${'Valoración: ' + review.rating + ' /5 estrellas'}"></p>
-        <p th:text="${'Fecha: ' + review.creationDate}"></p>
-
-    </li>
-
-</ul>
+</html>
 
 <!-- para el admin: -->
 <!-- listado de empleados -->
