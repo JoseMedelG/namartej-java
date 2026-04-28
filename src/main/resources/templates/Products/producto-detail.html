@@ -26,5 +26,20 @@
     <a th:href="@{/tiendas/{id}(id=${producto.tienda.id})}" th:text="${producto.tienda.name}"></a>
 </p>
 
+<h2>Opiniones sobre este producto</h2>
+
+<p th:if="${reviews.isEmpty()}">Sé el primero en escribir tu opinión</p>
+
+<ul th:unless="${reviews.isEmpty()}">
+    <li th:each="review : ${reviews}">
+
+        <p th:text="${review.title}"></p>
+        <p th:text="${review.description}"></p>
+        <p th:text="${'Valoración: ' + review.rating + ' /5 estrellas'}"></p>
+        <p th:text="${'Fecha: ' + review.creationDate}"></p>
+
+    </li>
+</ul>
+
 </body>
 </html>

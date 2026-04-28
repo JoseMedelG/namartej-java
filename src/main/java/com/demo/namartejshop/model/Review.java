@@ -39,6 +39,10 @@ public class Review {
     @ManyToOne
     private Tiendas tiendas;
 
+    @ToString.Exclude
+    @ManyToOne
+    private Productos productos;
+
 
 
 }

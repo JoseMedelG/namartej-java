@@ -304,7 +304,23 @@ public class NamartejShopApplication {
                 .rating(3)
                 .build();
 
-        reviewRepository.saveAll(List.of(review1, review2, review3));
+        Review review4 = Review.builder()
+                .description("Super guay")
+                .productos(camisetablanca)
+                .title("Siempre vestido de gala")
+                .rating(5)
+                .build();
+
+        Review review5 = Review.builder()
+                .description("buenos vaqueros")
+                .productos(jeansgris)
+                .title("Bacano")
+                .rating(5)
+                .build();
+
+        reviewRepository.saveAll(List.of(review1, review2, review3,review4,review5));
+
+
 
 
 

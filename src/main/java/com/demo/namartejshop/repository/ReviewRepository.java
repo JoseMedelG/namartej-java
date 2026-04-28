@@ -8,6 +8,8 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 
     List<Review> findByTiendas_IdOrderByCreationDateDesc(Long tiendasId);
+    List<Review> findByProductos_IdOrderByCreationDateDesc(Long productosId);
+
 
     List<Review> findByTiendas_IdAndRatingGreaterThanEqualOrderByCreationDateDesc(Long id, Integer rating);
 
