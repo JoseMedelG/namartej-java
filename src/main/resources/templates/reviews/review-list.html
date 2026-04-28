@@ -14,8 +14,14 @@
         <p th:text="${'Fecha: ' + review.creationDate}"></p>
 
 
-        <p th:text="${review.tiendas.name}"></p>
-        <a th:href="@{/tiendas/{id}(id=${review.tiendas.id})}">Ver tienda</a>
+        <p th:if="${review.tiendas != null }" th:text="${review.tiendas.name}"></p>
+
+        <p th:if="${review.productos != null }" th:text="${review.productos.nameProduct}"></p>
+
+        <p th:if="${review.productos != null && review.productos.tienda != null}" th:text="${review.productos.tienda.name}"></p>
+
+        <a th:if="${review.tiendas != null}" th:href="@{/tiendas/{id}(id=${review.tiendas.id})}">Ver tienda</a>
+
     </li>
 </ul>
 
