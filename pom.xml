@@ -8,11 +8,11 @@
         <version>4.0.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.restaurantes</groupId>
-    <artifactId>restaurantes-java</artifactId>
+    <groupId>com.tiendas</groupId>
+    <artifactId>tiendas-java</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>restaurantes-java</name>
-    <description>restaurantes-java</description>
+    <name>tiendas-java</name>
+    <description>tiendas-java</description>
     <url/>
     <licenses>
         <license/>
@@ -72,6 +72,20 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>5.3.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+            <version>7.2.0</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>

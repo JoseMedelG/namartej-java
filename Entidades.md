@@ -77,4 +77,14 @@ Pasos para el Controller:
  * tiendas (ManyToOne)
  * user (ManyToOne)
  * 
- * 
+
+
+* Bootstrap CSS
+  * Añadir en pom.xml
+  * bootstrap
+  * webjars_locator-list
+  * font-awesome
+* Crear carpeta templates/layout
+  * Head
+  * navbar
+  * footer

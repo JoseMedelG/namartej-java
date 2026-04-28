@@ -1,20 +1,50 @@
 <!DOCTYPE html>
-<html lang="en-ES" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Listado Tiendas Namartej</title>
-</head>
-<body>
-<h1>Listado de tiendas</h1>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/head :: head('Tiendas')}"></head>
+<body class="d-flex flex-column min-vh-100">
 
-<!-- imprimir numero de tiendas -->
-<ul>
- <li th:each="tienda : ${tiendas}">
-     <span th:text="${tienda.name}"></span>
-     <span th:text="${tienda.averageprice}"></span>
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
 
-    <a th:href="@{/tiendas/{id}(id=${tienda.id})}">Ver tienda</a>
+<main class="container flex-grow-1">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0" th:text="${title}">Namartej-shop</h1>
+        <span class="badge bg-secondary fs-6" th:text="|${numTiendas} resultados|">0 resultados</span>
+    </div>
 
-</ul>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="col" th:each="tiendas : ${tiendas}">
+            <div class="card card-restaurant h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <i class="fa-solid fa-store text-primary me-2"></i>
+                        <span th:text="${tiendas.name}">Nombre</span>
+                    </h5>
+                    <p class="card-text">
+                        <span class="badge bg-success">
+                            <i class="fa-solid fa-euro-sign me-1"></i>
+                            <span th:text="${tiendas.averageprice}">0</span>
+                        </span>
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pt-0">
+                    <a th:href="@{/tiendas/{id}(id=${tiendas.id})}"
+                       class="btn btn-outline-primary btn-sm w-100">
+                        <i class="fa-regular fa-eye me-1"></i> Ver tienda
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a th:href="@{/tiendas/create}" class="btn btn-success">
+            <i class="fa-solid fa-plus me-1"></i> Crear Tienda
+        </a>
+    </div>
+</main>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
+<script th:replace="~{layout/footer :: scripts}"></script>
+
 </body>
 </html>
