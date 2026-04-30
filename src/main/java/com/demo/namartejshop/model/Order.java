@@ -25,6 +25,9 @@ public class Order {
 
     @ManyToOne
     private Tiendas tiendas;
+
+//    @ManyToOne
+//    private Productos productos;
 //@ManyToOne
 //    private Employee empleado;
 
@@ -38,9 +41,20 @@ public class Order {
         this.customerAddress = customerAddress;
         this.totalPrice = totalPrice;
         this.tiendas = tiendas;
+       // this.productos = productos;
+
     }
 
     // Getters and Setters (NO puse el id, ni el totalprice porque se generan automaticamente)
+
+//    public Productos getProductos() {
+//        return productos;
+//    }
+//
+//    public void setProductos(Productos productos) {
+//        this.productos = productos;
+//    }
+
     public Tiendas getTiendas() {
         return tiendas;
     }
@@ -117,6 +131,7 @@ public class Order {
                 ", totalPrice=" + totalPrice +
                 ", status=" + status +
                 '}';
+
     }
 
 
