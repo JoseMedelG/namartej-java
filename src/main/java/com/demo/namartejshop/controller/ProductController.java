@@ -20,6 +20,14 @@ public class ProductController {
     private final ProductosRepository productosRepository;
     private ReviewRepository reviewRepository;
 
+    @GetMapping("products")
+    public String listProducts(Model model){
+        List<Productos> productos  = productosRepository.findAll();
+        model.addAttribute("productos", productos);
+        return "Products/producto-list";
+
+    }
+
 
     @GetMapping("products/{id}")
     public String tiendaDetail(@PathVariable Long id, Model model){
