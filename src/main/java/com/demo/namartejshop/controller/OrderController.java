@@ -26,7 +26,7 @@ public class OrderController {
     @GetMapping("orders/{id}")
     public String order(Model model, @PathVariable Long id){
         model.addAttribute("order", orderRepository.findById(id).orElseThrow());
-        model.addAttribute("orderLines", orderLineRepository.findById(id).orElseThrow());
+        model.addAttribute("orderLines", orderLineRepository.findByOrder_Id(id));
         return "orders/order-detail";
     }
 
