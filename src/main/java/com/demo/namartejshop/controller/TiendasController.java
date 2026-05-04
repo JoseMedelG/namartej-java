@@ -56,7 +56,8 @@ public class TiendasController {
         @GetMapping("tiendas") // controlador
         public String tiendasList(Model model) {
             // cargar datos en el modelo
-            List<Tiendas> tiendas = tiendasRepository.findAll();
+            // List<Restaurant> restaurants = restaurantRepository.findAll();
+            List<Tiendas> tiendas = tiendasRepository.findByActiveTrue();
             model.addAttribute("tiendas", tiendas);
             model.addAttribute("numTiendas", tiendas.size());
             model.addAttribute("title", "Lista de tiendas");
@@ -68,7 +69,8 @@ public class TiendasController {
         public String restaurantDetail(@PathVariable Long id, Model model) {
 
             // buscar tienda por su id: findById
-            Optional<Tiendas> tiendasOptional = tiendasRepository.findById(id);
+            // Optional<Tiendas> tiendasOptional = tiendasRepository.findById(id);
+            Optional<Tiendas> tiendasOptional = tiendasRepository.findByIdAndActiveTrue(id);
             if (tiendasOptional.isPresent()) {
 
                 // La tienda sí existe
@@ -93,6 +95,18 @@ public class TiendasController {
             // APUNTA al Controller
             return "redirect:/tiendas";
         }
+            @GetMapping("tiendas/deactivate/{id}")
+            public String restaurantDeactivate(@PathVariable Long id, Model model) {
+                Optional<Tiendas> tiendaOptional = tiendasRepository.findById(id);
+
+                if(tiendaOptional.isPresent()) {
+                    Tiendas tiendas = tiendaOptional.get();
+                    tiendas.setActive(false);
+                    tiendasRepository.save(tiendas);
+                }
+
+                return "redirect:/tiendas";
+            }
 
 
 
