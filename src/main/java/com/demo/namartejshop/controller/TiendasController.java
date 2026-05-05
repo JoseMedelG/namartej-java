@@ -134,6 +134,14 @@ public class TiendasController {
             }
 
 
+            //ruta para entrar al formulario de restaurante
+            @GetMapping("tiendas/new")
+            public String newTiendas(Model model){
+
+                return "Tiendas/tienda-form";
+            }
+
+
 
     }
 

@@ -6,9 +6,13 @@
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
 
 <main class="container flex-grow-1">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="mb-0" th:text="${title}">Namartej-shop</h1>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h1 class="mb-0" th:text="${title}">Namartej</h1>
         <span class="badge bg-secondary fs-6" th:text="|${numTiendas} resultados|">0 resultados</span>
+        <a th:href="@{/tiendas/new}" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-plus"></i>
+            Crear tienda
+        </a>
     </div>
     <!-- Opcional: agregar filtros -->
 
@@ -98,11 +102,6 @@
         </div>
     </div>
 
-    <div class="mt-4">
-        <a th:href="@{/tiendas/create}" class="btn btn-success">
-            <i class="fa-solid fa-plus me-1"></i> Crear Tienda
-        </a>
-    </div>
 </main>
 
 <footer th:replace="~{layout/footer :: footer}"></footer>
