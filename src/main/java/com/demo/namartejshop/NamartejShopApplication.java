@@ -143,7 +143,7 @@ public class NamartejShopApplication {
         classicCollection.setName("Tienda Galicia");
         classicCollection.setClothesType(ClothesType.classic);
         tiendasRepository.save(classicCollection);
-        System.out.println(classicCollection);
+       System.out.println(classicCollection);
 
 
         // Crear una colección de streetwear (Si intento poner otra coleccion que no este en la carpeta de enum, no me dejara)
@@ -164,8 +164,9 @@ public class NamartejShopApplication {
 
         // fecha futura
         Tiendas getafe = new Tiendas();
-        getafe.setName("Tienda getafe");
+        getafe.setName("Tienda Getafe");
         getafe.setStarDate(LocalDate.of(2026, 5, 15));
+        getafe.setAverageprice(36.4);
         tiendasRepository.save(getafe);
         System.out.println(getafe);
 
@@ -177,6 +178,7 @@ public class NamartejShopApplication {
         Tiendas segovia = new Tiendas();
         segovia.setName("Tienda Segovia");
         segovia.setClothesType(ClothesType.Streetwear);
+        segovia.setAverageprice(20.0);
         tiendasRepository.save(segovia);
         System.out.println(segovia);
 
