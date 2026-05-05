@@ -1,5 +1,5 @@
 package com.demo.namartejshop.model.enums;
 
 public enum ClothesType {
-    Streetwear, classic, Sport
+    Streetwear, classic, Sport, italian
 }
