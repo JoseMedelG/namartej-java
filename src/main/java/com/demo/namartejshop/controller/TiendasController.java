@@ -4,6 +4,7 @@ package com.demo.namartejshop.controller;
 import com.demo.namartejshop.model.Productos;
 import com.demo.namartejshop.model.Review;
 import com.demo.namartejshop.model.Tiendas;
+import com.demo.namartejshop.model.enums.ClothesType;
 import com.demo.namartejshop.repository.ProductosRepository;
 import com.demo.namartejshop.repository.ReviewRepository;
 import com.demo.namartejshop.repository.TiendasRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,11 +55,34 @@ public class TiendasController {
 
         // get all restaurants
         // http://localhost:8080/tiendas
+
+    //    // http://localhost:8080/restaurants
+//    @GetMapping("restaurants") // controlador
+//    public String restaurantList(Model model) {
+//        // cargar datos en el modelo
+    ////        List<Tiendas> tiendas = tiendasRepository.findAll();
+//        List<Tiendas> Tiendas = tiendasRepository.findByActiveTrue();
+//        model.addAttribute("tiendas", tiendas);
+//        model.addAttribute("numTiendas", tiendas.size());
+//        model.addAttribute("title", "Lista de tiendas");
+//        return "tiendas/tiendas-list"; // vista
+//    }
+    // http://localhost:8080/tiendas?clothesType=STREETWEAR
+    // http://localhost:8080/tiendas?price=15
+    // http://localhost:8080/tiendas?title=camiseta
         @GetMapping("tiendas") // controlador
-        public String tiendasList(Model model) {
-            // cargar datos en el modelo
-            // List<Restaurant> restaurants = restaurantRepository.findAll();
-            List<Tiendas> tiendas = tiendasRepository.findByActiveTrue();
+//        public String tiendasList(Model model) {
+//            // cargar datos en el modelo
+//            // List<Restaurant> restaurants = restaurantRepository.findAll();
+//            List<Tiendas> tiendas = tiendasRepository.findByActiveTrue();
+         public String tiendasList(
+                Model model,
+                @RequestParam(required = false) ClothesType clothesType,
+                @RequestParam(required = false) Double price,
+                @RequestParam(required = false) String title
+
+        ) {
+            List<Tiendas> tiendas = tiendasRepository.findActiveFiltering(clothesType, price, title);
             model.addAttribute("tiendas", tiendas);
             model.addAttribute("numTiendas", tiendas.size());
             model.addAttribute("title", "Lista de tiendas");
