@@ -19,7 +19,7 @@
     <div class="mb-3">
     <h5>Filtros rápidos</h5>
     <a th:href="@{/tiendas}" class="btn btn-sm btn-primary">Todos</a>
-    <a th:href="@{/tiendas(clothesType='streetwear')}" class="btn btn-sm btn-secondary">Streetwaer</a>
+    <a th:href="@{/tiendas(clothesType='Streetwear')}" class="btn btn-sm btn-secondary">Streetwaer</a>
     <a th:href="@{/tiendas(clothesType='classic')}" class="btn btn-sm btn-secondary">Classic</a>
     <a th:href="@{/tiendas(price=15)}" class="btn btn-sm btn-success">Hasta 15 euros</a>
     <a th:href="@{/tiendas(price=30)}" class="btn btn-sm btn-success">Hasta 30 euros</a>
@@ -42,6 +42,16 @@
                 <label class="form-label form-label-sm">Precio Máx</label>
                 <input type="number" min="10" step="1" name="price"
                        class="form-control form-control-sm" th:value="${param.price}">
+            </div>
+            <!-- Filtro por clothesType con selector-->
+            <div class="col-auto">
+                <label class="form-label form-label-sm">Tipo de ropa</label>
+                <select name="clothesType" class="form-select form-select-sm">
+                    <option value="" th:selected="${param.clothesType == null}">Todas</option>
+                    <option value="Streetwear" th:selected="${param.clothesType != null and param.clothesType[0] == 'Streetwear'}">Streetwear</option>
+                    <option value="classic" th:selected="${param.clothesType != null and param.clothesType[0] == 'classic'}">Classic</option>
+                    <option value="italian" th:selected="${param.clothesType != null and param.clothesType[0] == 'italian'}">Italian</option>
+                </select>
             </div>
 
             <div class="col-auto">
