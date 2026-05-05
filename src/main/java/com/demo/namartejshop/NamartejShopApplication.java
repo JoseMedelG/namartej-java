@@ -142,6 +142,7 @@ public class NamartejShopApplication {
         Tiendas classicCollection = new Tiendas();
         classicCollection.setName("Tienda Galicia");
         classicCollection.setClothesType(ClothesType.classic);
+        classicCollection.setAverageprice(25.6);
         tiendasRepository.save(classicCollection);
        System.out.println(classicCollection);
 
@@ -150,6 +151,7 @@ public class NamartejShopApplication {
         Tiendas streetColletion = new Tiendas();
         streetColletion.setName("Tienda Mallorca");
         streetColletion.setClothesType(ClothesType.Streetwear);
+        streetColletion.setAverageprice(33.4);
         tiendasRepository.save(streetColletion);
         System.out.println(streetColletion);
 
@@ -157,6 +159,7 @@ public class NamartejShopApplication {
         //Probar fecha de startDate del restaurante
         Tiendas starCollection = new Tiendas();
         starCollection.setName("Tienda Sevilla");
+        starCollection.setClothesType(ClothesType.italian);
         starCollection.setStarDate(LocalDate.now());
         tiendasRepository.save(starCollection);
         System.out.println(starCollection);
