@@ -137,9 +137,9 @@ public class TiendasController {
             public String newTiendas(Model model){
             // añadir objeto Tiendas vacio para rellenarlo desde le formulario
                 model.addAttribute("tienda", new Tiendas());
-                // datos para el formulario
                 // datos para el clothes types
-                //
+                model.addAttribute("clothesTypes", ClothesType.values());
+                // categorias
                 return "Tiendas/tienda-form";
             }
 

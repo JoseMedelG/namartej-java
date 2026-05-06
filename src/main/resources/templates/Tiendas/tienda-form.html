@@ -1,39 +1,79 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout/head :: head('Reseñas')}"></head>
-<body class="d-flex flex-column min-vh-100">
 
-    <nav th:replace="~{layout/navbar :: navbar}"></nav>
+<head th:replace="~{layout/head :: head('Formulario Tienda')}"></head>
 
-    <main class="container flex-grow-1 my-4">
+<body class="d-flex flex-column min-vh-100 bg-light">
 
-        <h1 class="mb-0">
-            <i class="fa-solid fa-face-dizzy text-primary me-2"></i>Formulario tienda
-        </h1>
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
 
-        <!--Vamos a poner un formulario para crear una nueva tienda -->
-        <form th:action="@{/tiendas}" method="post" th:object="${tienda}">
+<main class="container flex-grow-1 my-4">
 
-            <input type="hidden" th:field="*{id}">
+    <h1 class="mb-0">
+        <i class="fa-solid fa-face-smile text-primary me-2"></i>Formulario Tienda
+    </h1>
 
-            <div class="mb-3">
-               <label for="name" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Nombre de la tienda" required>
+    <!-- TODO formulario para crear o editar un restaurante -->
+    <form th:action="@{/tiendas}" method="post" th:object="${tienda}">
 
-            </div>
+        <input type="hidden" th:field="*{id}">
 
-            <button type="submit" class="btn btn-success">
-                <i class="fa-solid fa-floppy-disk"></i> Guardar
-            </button>
-            <a th:href="@{/tiendas}" class="btn btn-secondary">Cancelar</a>
-        </form>
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name"
+                   th:field="*{name}" placeholder="Nombre de la tienda">
+            <!-- <small>Nombre comercial del restaurante, no la razón social.</small>-->
+        </div>
+        <!-- precio medio-->
+        <div class="mb-3">
+            <label for="averageprice" class="form-label">Precio medio €</label>
+            <input type="number" class="form-control" id="averageprice"
+                   th:field="*{averageprice}" step="1" min="0">
+        </div>
+        <!-- numberEmployees -->
+        <div class="mb-3">
+            <label for="numberEmployees" class="form-label">Número de empleados</label>
+            <input type="number" class="form-control" id="numberEmployees"
+                   th:field="*{numberEmployees}" step="1" min="1">
+        </div>
+        <!-- fecha inauguración -->
+        <div class="mb-3">
+            <label for="starDate" class="form-label">Fecha Apertura</label>
+            <input type="date" class="form-control" id="starDate"
+                   th:field="*{starDate}" step="1" min="0">
+        </div>
 
-    </main>
+        <div class="mb-3">
+            <label class="form-label" for="clothesType">Tipo de ropa</label>
+            <select class="form-select" id="clothesType" th:field="*{clothesType}">
+               <option value=""></option>
+                <option
+                        th:each="clothesType : ${clothesTypes}"
+                        th:value="${clothesType}"
+                        th:text="${clothesType}">
+                </option>
+            </select>
+        </div>
+
+        <!-- si se desactiva no sale por la UI en list y detail-->
+        <div class="mb-3 form-check form-switch">
+            <input type="checkbox" class="form-check-input" id="active"
+                   role="switch" th:field="*{active}">
+            <label class="form-check-label" for="active">Tienda activa</label>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            <i class="fa-solid fa-floppy-disk"></i> Guardar
+        </button>
+
+        <a th:href="@{/tiendas}" class="btn btn-secondary">Cancelar</a>
 
 
-    <footer th:replace="~{layout/footer :: footer}"></footer>
-    <script th:replace="~{layout/footer :: scripts}"></script>
+    </form>
 
+</main>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
+<script th:replace="~{layout/footer :: scripts}"></script>
 
 </body>
-</html>
