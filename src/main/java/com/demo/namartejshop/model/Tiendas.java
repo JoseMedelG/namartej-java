@@ -17,6 +17,7 @@ public class Tiendas {
     private String name;
 
     private Double averageprice;
+
     @Column(columnDefinition = "BOOLEAN DEFAULT true")
     private Boolean active = true;
 

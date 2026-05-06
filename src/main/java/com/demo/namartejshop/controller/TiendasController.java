@@ -137,7 +137,11 @@ public class TiendasController {
             //ruta para entrar al formulario de restaurante
             @GetMapping("tiendas/new")
             public String newTiendas(Model model){
-
+            // añadir objeto Tiendas vacio para rellenarlo desde le formulario
+                model.addAttribute("tienda", new Tiendas());
+                // datos para el formulario
+                // datos para el clothes types
+                //
                 return "Tiendas/tienda-form";
             }
 

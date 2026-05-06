@@ -12,6 +12,21 @@
         </h1>
 
         <!--Vamos a poner un formulario para crear una nueva tienda -->
+        <form th:action="@{/tiendas}" method="post" th:object="${tienda}">
+
+            <input type="hidden" th:field="*{id}">
+
+            <div class="mb-3">
+               <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" th:field="*{name}" placeholder="Nombre de la tienda" required>
+
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                <i class="fa-solid fa-floppy-disk"></i> Guardar
+            </button>
+            <a th:href="@{/tiendas}" class="btn btn-secondary">Cancelar</a>
+        </form>
 
     </main>
 
