@@ -90,12 +90,17 @@
                     <!-- Botón Desactivar restaurante que cambia Active a false y hace redirect a list -->
                     <a th:href="@{/tiendas/{id}(id=${tiendas.id})}"
                        class="btn btn-outline-primary btn-sm w-100">
-                        <i class="fa-regular fa-eye me-1"></i> Ver tienda
+                        <i class="fa-regular fa-eye me-1"></i> Ver
                     </a>
                     <!-- Botón Desactivar Tienda que cambia Active a false y hace redirect a list -->
                     <a th:href="@{/tiendas/deactivate/{id}(id=${tiendas.id})}"
                        class="btn btn-warning btn-sm w-100 mt-2">
-                        <i class="fa-solid fa-ban me-1"></i> Desactivar tienda
+                        <i class="fa-solid fa-ban me-1"></i> Desactivar
+                    </a>
+
+                    <a th:href="@{/tiendas/edit/{id}(id=${tiendas.id})}"
+                       class="btn btn-success btn-sm w-100 mt-2">
+                        <i class="fa-solid fa-pencil me-1"></i> Editar
                     </a>
                 </div>
             </div>

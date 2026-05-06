@@ -132,7 +132,7 @@ public class TiendasController {
             }
 
 
-            //ruta para entrar al formulario de restaurante
+            // CREAR UNA TIENDA DESDE CERO
             @GetMapping("tiendas/new")
             public String newTiendas(Model model){
             // añadir objeto Tiendas vacio para rellenarlo desde le formulario
@@ -142,6 +142,16 @@ public class TiendasController {
                 // categorias
                 return "Tiendas/tienda-form";
             }
+
+            // EDITAR UNA TIENDA EXISTENTE
+            @GetMapping("tiendas/edit/{id}")
+            public String editTienda(@PathVariable Long id, Model model){
+            model.addAttribute("tienda", tiendasRepository.findById(id).orElseThrow());
+            model.addAttribute("clothesTypes", ClothesType.values());
+
+            return "Tiendas/tienda-form";
+            }
+
 
             @PostMapping("tiendas")
             public String createTienda(@ModelAttribute Tiendas tiendas){
