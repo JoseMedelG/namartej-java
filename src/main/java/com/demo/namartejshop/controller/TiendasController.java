@@ -10,9 +10,7 @@ import com.demo.namartejshop.repository.ReviewRepository;
 import com.demo.namartejshop.repository.TiendasRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -145,6 +143,13 @@ public class TiendasController {
                 return "Tiendas/tienda-form";
             }
 
+            @PostMapping("tiendas")
+            public String createTienda(@ModelAttribute Tiendas tiendas){
+
+                System.out.println("TIENDA RECIBIDA: " + tiendas);
+                tiendasRepository.save(tiendas);
+                return "redirect:/tiendas/" + tiendas.getId();
+            }
 
 
     }
