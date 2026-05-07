@@ -63,7 +63,13 @@ public class ProductController {
         return "Products/product-form";
     }
     // Get editDish
-
+    @GetMapping("products/edit/{id}")
+    public String editProduct(@PathVariable Long id, Model model){
+        model.addAttribute("product", productosRepository.findById(id).orElseThrow());
+        model.addAttribute("productTypes", ProductType.values());
+        model.addAttribute("tiendas", tiendasRepository.findAll());
+        return "Products/product-form";
+    }
     // Post saveDish
     @PostMapping("products")
     public String saveProduct(@ModelAttribute Productos productos){
