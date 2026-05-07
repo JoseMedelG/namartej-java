@@ -29,6 +29,34 @@
                 rows="3" maxlength="500"   placeholder="Descripción del producto"
             ></textarea>
         </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="price"
+            th:field="*{price}" step="0.01" min="0" placeholder="Precio del producto" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="productType" class="form-select">Tipo de producto</label>
+            <select class="form-select" id="productType" th:field="*{productType}">
+              <option value=""></option>
+              <option th:each="productType : ${productTypes}"
+                      th:value="${productType}"
+                      th:text="${productType}">
+
+              </option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="tienda" class="form-select">Tienda</label>
+            <select class="form-select" id="tienda" th:field="*{tienda}">
+                <option value=""></option>
+                <option th:each="tienda : ${tiendas}"
+                        th:value="${tienda.id}"
+                        th:text="${tienda.id + ' - ' + tienda.name}">
+                </option>
+            </select>
+        </div>
 
         <button type="submit" class="btn btn-success">
             <i class="fa-solid fa-floppy-disk"></i> Guardar

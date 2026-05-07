@@ -58,7 +58,7 @@ public class ProductController {
         // añadir objeto product vacio para rellenarlo desde le formulario
         model.addAttribute("product", new Productos());
         // datos para el  productTypes
-        model.addAttribute("productType", ProductType.values());
+        model.addAttribute("productTypes", ProductType.values());
         model.addAttribute("tiendas", tiendasRepository.findAll());
         return "Products/product-form";
     }
