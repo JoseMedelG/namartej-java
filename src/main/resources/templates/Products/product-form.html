@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout/head :: head('Formulario Producto')}"></head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<nav th:replace="~{layout/navbar :: navbar}"></nav>
+
+<main class="container flex-grow-1 my-4">
+
+    <h1 class="mb-0">
+        <i class="fa-solid fa-shirt text-primary me-2"></i>Formulario de producto
+    </h1>
+
+    <!-- TODO formulario para crear o editar un producto -->
+    <form th:action="@{/products}" method="post" th:object="${product}">
+        <input type="hidden" th:field="*{id}">
+
+        <!-- campos de producto-->
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name"
+                   th:field="*{nameProduct}" placeholder="Nombre del producto" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripción </label>
+            <textarea class="form-control" id="description" th:field="*{description}"
+                rows="3" maxlength="500"   placeholder="Descripción del producto"
+            ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            <i class="fa-solid fa-floppy-disk"></i> Guardar
+        </button>
+
+        <a th:href="@{/tiendas}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</main>
+<footer th:replace="~{layout/footer :: footer}"></footer>
+<script th:replace="~{layout/footer :: scripts}"></script>
+
+</body>
+</html>
