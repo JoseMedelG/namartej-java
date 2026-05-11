@@ -87,6 +87,11 @@
     <h2 class="mt-5">
         <i class="fa-regular fa-comments text-primary me-2"></i> Opiniones de nuestros clientes
     </h2>
+
+    <a class="btn btn-success" th:href="@{/reviews/new(tiendaId=${tienda.id})}">
+       <i class="fa-solid fa-plus"></i> Escribe tu reseña
+    </a>
+
     <div th:if="${reviews.isEmpty()}" class="alert alert-light border">
         <i class="fa-regular fa-face-smile me-1"></i>
         Nadie ha comentado todavía, sé el primero en escribir una opinión.
