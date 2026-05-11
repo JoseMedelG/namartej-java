@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -31,7 +32,7 @@ public class Review {
     private String description;
 
     private Integer rating;
-
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @Builder.Default // para que el builder no ponga este campo a null
     private LocalDateTime creationDate = LocalDateTime.now();
 

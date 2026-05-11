@@ -11,6 +11,11 @@
         <i class="fa-regular fa-comments text-primary me-2"></i> Opiniones de clientes
     </h1>
 
+    <a class="btn btn-success my-3"
+       th:href="@{/reviews/new(productoId=${producto.id})}">
+        <i class="fa-solid fa-plus"></i> Escribe tu reseña
+    </a>
+
     <div th:if="${reviews.isEmpty()}" class="alert alert-light border">
         Aún no hay reseñas.
     </div>

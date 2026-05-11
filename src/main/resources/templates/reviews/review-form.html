@@ -17,9 +17,20 @@
         <input type="hidden" th:field="*{id}">
         <input type="hidden" th:field="*{tiendas}">
         <input type="hidden" th:field="*{productos}">
-        <div th:if="${review.tiendas != null}">
-            <span th:text="${review.tiendas.name}"></span>
+        <input type="hidden" th:field="*{creationDate}">
+
+        <div class="alert alert-info" th:if="${review.tiendas != null}">
+            <i class="fa-solid fa-store"></i>
+            Reseña sobre la tienda:
+            <strong th:text="${review.tiendas.name}"></strong>
         </div>
+
+        <div class="alert alert-info" th:if="${review.productos != null}">
+            <i class="fa-solid fa-shirt"></i>
+            Reseña sobre el producto:
+            <strong th:text="${review.productos.nameProduct}"></strong>
+        </div>
+
     <!-- TODO indicar qué tienda o producto se está reseñando-->
 
         <div class="mb-3">
