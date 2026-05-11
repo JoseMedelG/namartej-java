@@ -60,7 +60,7 @@ public class ProductController {
         // datos para el  productTypes
         model.addAttribute("productTypes", ProductType.values());
         model.addAttribute("tiendas", tiendasRepository.findAll());
-        return "Products/product-form";
+        return "Products/producto-form";
     }
     // Get editDish
     @GetMapping("products/edit/{id}")
@@ -68,7 +68,7 @@ public class ProductController {
         model.addAttribute("product", productosRepository.findById(id).orElseThrow());
         model.addAttribute("productTypes", ProductType.values());
         model.addAttribute("tiendas", tiendasRepository.findAll());
-        return "Products/product-form";
+        return "Products/producto-form";
     }
     // Post saveDish
     @PostMapping("products")
