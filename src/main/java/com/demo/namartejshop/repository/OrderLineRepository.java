@@ -5,10 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderLineRepository extends JpaRepository<OrderLine, Long> {
 
     List<OrderLine> findByOrder_Id(Long id);
+
+    Optional<OrderLine> findByOrder_IdAndProductos_Id(Long id, Long productoId);
+
 
 
     @Query("""

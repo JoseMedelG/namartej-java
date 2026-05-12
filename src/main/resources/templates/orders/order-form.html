@@ -16,6 +16,7 @@
     <!-- TODO formulario para crear o editar un pedido -->
     <form th:action="@{/orders}" method="post" th:object="${order}">
         <input type="hidden" th:field="*{id}">
+        <input type="hidden" th:field="*{tiendas.id}">
 
         <div class="mb-3">
             <label class="form-label" for="customerName">Nombre completo</label>
@@ -34,6 +35,11 @@
             <input type="text" id="customerAddress" th:field="*{customerAddress}"
                    class="form-control" placeholder="Escriba su dirección..." required>
         </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="userSuggestions">Indicaciones/Comentarios</label>
+            <textarea id="userSuggestions" class="form-control" th:field="*{userSuggestions}"
+                      rows="3" maxlength="500"></textarea>
 
 
         <!-- campos de producto-->

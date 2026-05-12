@@ -18,6 +18,7 @@ public class Order {
     private LocalDateTime fecha = LocalDateTime.now();
     private String customerEmail;
     private String customerAddress;
+    private String userSuggestions;
     private Double totalPrice;
 
     @Enumerated(EnumType.STRING)
@@ -35,12 +36,13 @@ public class Order {
         public Order() {}
 
     // Constructor con parámetros
-    public Order(String customerName, String customerEmail, String customerAddress, Double totalPrice, Tiendas tiendas) {
+    public Order(String customerName, String customerEmail, String customerAddress, Double totalPrice, Tiendas tiendas, String userSuggestion) {
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerAddress = customerAddress;
         this.totalPrice = totalPrice;
         this.tiendas = tiendas;
+        this.userSuggestions = userSuggestion;
        // this.productos = productos;
 
     }
@@ -54,6 +56,15 @@ public class Order {
 //    public void setProductos(Productos productos) {
 //        this.productos = productos;
 //    }
+
+
+    public String getUserSuggestions() {
+        return userSuggestions;
+    }
+
+    public void setUserSuggestions(String userSuggestions) {
+        this.userSuggestions = userSuggestions;
+    }
 
     public Tiendas getTiendas() {
         return tiendas;
@@ -119,7 +130,6 @@ public class Order {
         this.id = id;
     }
 
-    // toString (No puse la tienda porque
     @Override
     public String toString() {
         return "Order{" +
@@ -128,10 +138,10 @@ public class Order {
                 ", fecha=" + fecha +
                 ", customerEmail='" + customerEmail + '\'' +
                 ", customerAddress='" + customerAddress + '\'' +
+                ", userSuggestions='" + userSuggestions + '\'' +
                 ", totalPrice=" + totalPrice +
                 ", status=" + status +
                 '}';
-
     }
 
 

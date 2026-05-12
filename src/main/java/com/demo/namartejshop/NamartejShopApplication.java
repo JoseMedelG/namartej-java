@@ -261,7 +261,12 @@ public class NamartejShopApplication {
         pedido1.setTiendas(tien2);
         orderRepository.save(pedido1);
 
-        Order pedido2 = new Order("Michelle", "Michelle123@hotmail.com", "Calle verdad 123",45.90, tien2);
+        Order pedido2 = new Order();
+        pedido2.setCustomerName("Natalia");
+        pedido2.setCustomerEmail("nati123@gmail.com");
+        pedido2.setCustomerAddress("Calle tuya 44");
+        pedido2.setTiendas(tien2);
+        pedido2.setUserSuggestions("Entregar en la mañana");
         orderRepository.save(pedido2);
 
 
