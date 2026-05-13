@@ -57,14 +57,26 @@ public class OrderController {
     }
 
 
+//    @PostMapping("orders")
+//    public String save(@ModelAttribute Order order) {
+//        order.setStatus(OrderStatus.ORDEN_RECIBIDA);
+//        order.setFecha(LocalDateTime.now());
+//        order.setTotalPrice(0d);
+//        orderRepository.save(order);
+//        return "redirect:/orders/" + order.getId();
+//    }
+
     @PostMapping("orders")
-    public String save(@ModelAttribute Order order) {
+    public String save(@ModelAttribute Order order, @RequestParam Long tiendaId) {
+        Tiendas tienda = tiendasRepository.findById(tiendaId).orElseThrow();
+        order.setTiendas(tienda);
         order.setStatus(OrderStatus.ORDEN_RECIBIDA);
         order.setFecha(LocalDateTime.now());
         order.setTotalPrice(0d);
         orderRepository.save(order);
         return "redirect:/orders/" + order.getId();
     }
+
 
     @PostMapping("orders/{id}/lines")
     public String addLineProductos(
@@ -98,14 +110,11 @@ public class OrderController {
 
         if (order.getStatus() == OrderStatus.ORDEN_RECIBIDA) {
             order.setStatus(OrderStatus.EN_PROCESO);
-
-            Double totalPrice = orderLineRepository.calculateTotalPrice(order.getId());
-            order.setTotalPrice(totalPrice);
-
-            orderRepository.save(order);
-
-            return "redirect:/orders/" + order.getId();
         }
+
+        Double totalPrice = orderLineRepository.calculateTotalPrice(order.getId());
+        order.setTotalPrice(totalPrice);
+        orderRepository.save(order);
 
         return "redirect:/orders/" + order.getId();
     }
@@ -118,6 +127,31 @@ public class OrderController {
         // tip, iva, service charge, terrace
         orderRepository.save(order);
         return "redirect:/orders/" + id;
+    }
+
+    @GetMapping("orders/{orderId}/lines/{lineId}/delete")
+    public String deleteLine(@PathVariable Long orderId, @PathVariable Long lineId) {
+        orderLineRepository.deleteById(lineId);
+        Order order =  orderRepository.findById(orderId).orElseThrow();
+        order.setTotalPrice(orderLineRepository.calculateTotalPrice(order.getId()));
+        orderRepository.save(order);
+        return "redirect:/orders/" + orderId;
+    }
+
+    @PostMapping("orders/{orderId}/lines/{lineId}")
+    public String updateLineQuantity(
+            @PathVariable Long orderId,
+            @PathVariable Long lineId,
+            @RequestParam Integer quantity) {
+        if(quantity >= 1){
+            OrderLine orderLine = orderLineRepository.findById(lineId).orElseThrow();
+            orderLine.setQuantity(quantity);
+            orderLineRepository.save(orderLine);
+            Order order =  orderRepository.findById(orderId).orElseThrow();
+            order.setTotalPrice(orderLineRepository.calculateTotalPrice(order.getId()));
+            orderRepository.save(order);
+        }
+        return "redirect:/orders/" + orderId;
     }
 
 }
