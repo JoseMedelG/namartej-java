@@ -119,12 +119,19 @@ public class OrderController {
         return "redirect:/orders/" + order.getId();
     }
 
+    // Si en la finalización se van a enviar datos sensibles mejor que sea PostMapping
     @GetMapping("orders/{id}/entregado")
-    public String finish(@PathVariable Long id) {
+    public String finish(@PathVariable Long id, @RequestParam(required = false) Double tip) {
         Order order =  orderRepository.findById(id).orElseThrow();
         order.setStatus(OrderStatus.ENTREGADO);
         order.setTotalPrice(orderLineRepository.calculateTotalPrice(order.getId()));
         // tip, iva, service charge, terrace
+        if(tip != null && tip > 0){
+            order.setTotalPrice(order.getTotalPrice() + tip);
+        } else{
+            order.setTotalPrice(order.getTotalPrice());
+        }
+
         orderRepository.save(order);
         return "redirect:/orders/" + id;
     }
@@ -153,5 +160,6 @@ public class OrderController {
         }
         return "redirect:/orders/" + orderId;
     }
+
 
 }
