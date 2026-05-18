@@ -11,27 +11,27 @@ Queremos que haya usuario admin con rol ROLE_ADMIN que pueda gestionar los produ
 
 Para esto vamos a usar Spring Security, que es un framework de seguridad para aplicaciones web en Java.
 
-## Paso 1: Añadir dependencias en pomp.xml
+## Paso 1: Añadir dependencias en pomp.xml {OK}
 
 * Spring-boot-starter-security
 * thymeleaf-extras-springsecurity6
   * spring-security-test (para pruebas)
 * Opcional: spring-bpoot-starter-validation (para validaciones)
 
-## Paso 2: Crear entidad User y enum Role
+## Paso 2: Crear entidad User y enum Role {OK}
 
 * enums/Role.java: ROLE_USER, ROLE_ADMIN
 * model/USER.java: id, username, password, email, roles (Set<Role>)
   * implements UserDetails de Spring Security
 
-## Paso 3: Crear repositorio UserRepository
+## Paso 3: Crear repositorio UserRepository {OK}
 
 * repository/UserRepository.java: extends JpaRepository<User, Long>
   * findByUsername(String username)
   * boolean existsByUsername(String username)
   * boolean existsByEmail(String email)
 
-## Paso 4: Crear servicio UserService
+## Paso 4: Crear servicio UserService {OK}
 
 * service/UserService.java
   * implements UserDetailsService de Spring Security
