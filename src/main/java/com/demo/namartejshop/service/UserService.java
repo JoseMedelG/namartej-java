@@ -22,7 +22,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-      //  Opcion tradicional
+        //  Opcion tradicional
 //        Optional <User> user = userRepository.findByUsername(username);
 //        if(user.isPresent()){
 //            return user.get();
@@ -35,6 +35,6 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
 
 
-
-    // cargar el usuario de base de datos por username
+        // cargar el usuario de base de datos por username
+    }
 }

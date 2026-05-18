@@ -39,7 +39,7 @@ Para esto vamos a usar Spring Security, que es un framework de seguridad para ap
   pueda cargar al usuario a partir del username y comparar la contraseña al
   hacer login y demás
 
-## Paso 5: Crear SecurityConfig
+## Paso 5: Crear SecurityConfig {CASI OK}
 
 * config/Securityconfig.java
   * securityFilterChain configura rutas protegidas, login, logout, etc.
