@@ -201,7 +201,6 @@
                     <th class="text-center">Cantidad</th>
                     <th class="text-end">Precio</th>
                     <th class="text-end">Subtotal</th>
-                    <th class="text-end pe-3"></th>
                     <th class="text-center pe-3">Ver</th> <!-- Ver -->
                     <th class="text-center pe-3" th:if="${order.status.name() != 'ENTREGADO'}">Modificar</th> <!-- modificar cantidad -->
                     <th class="text-center pe-3" th:if="${order.status.name() != 'ENTREGADO'}">Eliminar</th> <!-- eliminar linea pedido -->
@@ -227,7 +226,7 @@
                     <td class="text-center">
                         <span class="badge bg-secondary rounded-pill" th:text="${line.quantity}"></span>
                     </td>
-                    <td class="text-end">
+                    <td class="text-center">
                         <span th:text="${#numbers.formatDecimal(line.productos.price, 1, 2)}"></span> €
                     </td>
                     <td class="text-center fw-semibold"
@@ -243,7 +242,7 @@
 
                         <!-- <form> -->
                         <form th:action="@{/orders/{orderId}/lines/{lineId}(orderId=${order.id},lineId=${line.id})}"
-                        method="post" class="d-flex align-items-center gap-1">
+                        method="post" class="d-flex align-items-center justify-content-center gap-1">
                            <input name="quantity" type="number" min="1" style="width: 80px;"
                                   th:value="${line.quantity}" class="form-control form-control-sm me-2">
                             <button class="btn btn-sm btn-success">
@@ -252,7 +251,7 @@
                         </form>
 
                     </td>
-                    <td th:if="${order.status.name() != 'ENTREGADO'}">
+                    <td class="text-center" th:if="${order.status.name() != 'ENTREGADO'}">
                         <a class="btn btn-sm btn-danger text-center"
                            th:href="@{/orders/{orderId}/lines/{lineId}/delete(orderId=${order.id},lineId=${line.id})}">
                             <i class="fa-solid fa-trash"></i>

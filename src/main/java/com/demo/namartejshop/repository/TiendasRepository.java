@@ -10,10 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TiendasRepository extends JpaRepository<Tiendas, Long> {
-    //    @Transactional
-    //    @Modifying
-    //    @Query("delete from Restaurant r where r.name = ?1")
-    //    void deleteByNameTodoGuay(String name);
 
     List<Tiendas> findByActiveTrue();
     Optional<Tiendas> findByIdAndActiveTrue(Long id);
@@ -32,9 +28,6 @@ public interface TiendasRepository extends JpaRepository<Tiendas, Long> {
             @Param("title") String title
             );
 
-    // Filtro por nombre
-
-    // Filtro por foodType
 
     // Filtro por precio
 
