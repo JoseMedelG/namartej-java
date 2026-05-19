@@ -46,16 +46,16 @@ Para esto vamos a usar Spring Security, que es un framework de seguridad para ap
   * securityFilterChain configura rutas protegidas, login, logout, etc.
   * passwordEncoder() para cifrar contraseñas
   
-## Paso 6: Controlador AuthController para registro y login {Casi ok}
+## Paso 6: Controlador AuthController para registro y login {Ok}
 
 * Controller/AuthController.java
   * GET /login - muestra el formulario de login
   * GET /register - muestra el formulario de registro
   * POST /register - procesa el registro, crea el usuario con rol ROLE_USER
 
-## Paso 7: Crear vistas Thymeleaf para login y registro
+## Paso 7: Crear vistas Thymeleaf para login y registro 
 
-+ templates/auth/login.html
++ templates/auth/login.html (OK)
 + templates/auth/register.html
 + templates/fragment/navbar.html - mostrar enlaces de login/register o
 longout dependiendo de si el usuario está autenticado o no, usando thymeleaf-extras-springsecurity6

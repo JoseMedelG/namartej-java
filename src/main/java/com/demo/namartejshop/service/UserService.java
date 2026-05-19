@@ -50,7 +50,7 @@ public class UserService implements UserDetailsService {
         if(userRepository.existsByEmail(form.getEmail()))
             throw new RuntimeException("El email ya existe");
 
-        if(!form.getPassword().equals(form.getPasswordConfirm()))
+        if(! form.getPassword().equals(form.getPasswordConfirm()))
             throw new RuntimeException("Las contraseñas no coinciden");
 
 
