@@ -18,16 +18,16 @@
 
                 <div class="form-floatin mb-3">
                     <input type="text" class="form-control" id="username"
-                           placeholder="Escribe un nombre de usuario"
+                           placeholder="Username"
                            required th:field="*{username}" min="3" maxlength="100">
-                    <label for="username">Username</label>
+                    <label for="username"></label>
                 </div>
 
                 <div class="form-floatin mb-3">
                     <input type="email" class="form-control" id="email"
-                           placeholder="Escribe un email"
+                           placeholder="Email"
                            required th:field="*{email}">
-                    <label for="email">Email</label>
+                    <label for="email"></label>
                 </div>
 
                 <div class="form-floatin mb-3">
@@ -35,14 +35,15 @@
                            class="form-control" id="password"
                            placeholder="Contraseña"
                            required minlength="4">
-                    <label for="password">Contraseña</label>
+                    <label for="password"></label>
                 </div>
 
                 <div class="form-floatin mb-3">
                     <input type="passwordConfirm" th:field="*{passwordConfirm}"
                            class="form-control" id="passwordConfirm"
+                           placeholder="Confirmar contraseña"
                            required minlength="4">
-                    <label for="passwordConfirm">Repite la contraseña</label>
+                    <label for="passwordConfirm"></label>
                 </div>
 
                 <button type="submit" class="btn btn-success">Crear cuenta</button>

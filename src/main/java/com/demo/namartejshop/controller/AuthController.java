@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
@@ -30,13 +31,15 @@ public class AuthController {
 
     // @PostMpaping /register
     @PostMapping("register")
-    public String register(@ModelAttribute RegisterForm form){
-        System.out.println(form);
-        // verificar si username ocupado
-        // Verificar email ocupado
-        // verificar password
-
-        return "redirect:/login";
+    public String register(@ModelAttribute RegisterForm form, RedirectAttributes redirectAttributes){
+     try {
+         userService.register(form);
+         redirectAttributes.addFlashAttribute("message", "Cuenta creada correctamente. Inicie sesión.");
+         return "redirect:/login";
+     } catch (Exception e){
+         redirectAttributes.addFlashAttribute("error", e.getMessage());
+         return "redirect:/register";
+     }
     }
 
     // @GetMapping para el /login

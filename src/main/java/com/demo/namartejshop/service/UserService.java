@@ -1,6 +1,7 @@
 package com.demo.namartejshop.service;
 
 
+import com.demo.namartejshop.dto.RegisterForm;
 import com.demo.namartejshop.model.User;
 import com.demo.namartejshop.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -36,5 +37,9 @@ public class UserService implements UserDetailsService {
 
 
         // cargar el usuario de base de datos por username
+    }
+
+    public void register(RegisterForm form) {
+        // TODO
     }
 }
