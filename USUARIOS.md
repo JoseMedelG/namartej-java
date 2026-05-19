@@ -39,14 +39,14 @@ Para esto vamos a usar Spring Security, que es un framework de seguridad para ap
   pueda cargar al usuario a partir del username y comparar la contraseña al
   hacer login y demás
 
-## Paso 5: Crear SecurityConfig {CASI OK}
+## Paso 5: Crear SecurityConfig {OK}
 
 * config/Securityconfig.java
   * Creams dos @Bean
   * securityFilterChain configura rutas protegidas, login, logout, etc.
   * passwordEncoder() para cifrar contraseñas
   
-## Paso 6: Controlador AuthController para registro y login
+## Paso 6: Controlador AuthController para registro y login {Casi ok}
 
 * Controller/AuthController.java
   * GET /login - muestra el formulario de login
