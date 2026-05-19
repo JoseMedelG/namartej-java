@@ -42,6 +42,7 @@ Para esto vamos a usar Spring Security, que es un framework de seguridad para ap
 ## Paso 5: Crear SecurityConfig {CASI OK}
 
 * config/Securityconfig.java
+  * Creams dos @Bean
   * securityFilterChain configura rutas protegidas, login, logout, etc.
   * passwordEncoder() para cifrar contraseñas
   
@@ -77,3 +78,7 @@ Objetivo: 'th:if="${isAuthenticated()}"' o 'th:if="${isAdmin()}"'
 
 En controller OrderController, al crear un pedido, asignar el usuario autenticado al pedido.
 En controller ReviewController, al crear una review, asignar el usuario autenticado a la review.
+
+## Paso 10: Crear usuario demo 
+ * para probar la aplicación sin tener que registrarse cada vez, podemos crear un usuario
+demo en una clase de configuración o usando CommandLineRunner
