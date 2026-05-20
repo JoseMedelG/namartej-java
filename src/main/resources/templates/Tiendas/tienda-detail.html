@@ -13,12 +13,12 @@
                 Nombre
             </h1>
 
-            <a th:href="@{/tiendas/deactivate/{id}(id=${tienda.id})}"
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/tiendas/deactivate/{id}(id=${tienda.id})}"
                class="btn btn-warning btn-sm mt-2">
                 <i class="fa-solid fa-ban me-1"></i> Desactivar
             </a>
 
-            <a th:href="@{/tiendas/edit/{id}(id=${tienda.id})}"
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{/tiendas/edit/{id}(id=${tienda.id})}"
                class="btn btn-success btn-sm mt-2">
                 <i class="fa-solid fa-pencil me-1"></i> Editar
             </a>
@@ -92,7 +92,7 @@
         <i class="fa-regular fa-comments text-primary me-2"></i> Opiniones de nuestros clientes
     </h2>
 
-    <a class="btn btn-success" th:href="@{/reviews/new(tiendaId=${tienda.id})}">
+    <a sec:authorize="isAuthenticated()" class="btn btn-success" th:href="@{/reviews/new(tiendaId=${tienda.id})}">
        <i class="fa-solid fa-plus"></i> Escribe tu reseña
     </a>
 
