@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{layout/head :: head('Detalle Tienda')}"></head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -23,7 +23,7 @@
                 <i class="fa-solid fa-pencil me-1"></i> Editar
             </a>
 
-            <a class="btn btn-success btn-sm mt-2" th:href="@{/orders/new(tiendaId=${tienda.id})}">
+            <a sec:authorize="isAuthenticated()"  class="btn btn-success btn-sm mt-2" th:href="@{/orders/new(tiendaId=${tienda.id})}">
                 <i class="fa-solid fa-cart-arrow-down me-1"></i> Hacer pedido
             </a>
 
