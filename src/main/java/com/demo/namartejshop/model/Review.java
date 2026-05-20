@@ -44,6 +44,10 @@ public class Review {
     @ManyToOne
     private Productos productos;
 
+    @ToString.Exclude
+    @ManyToOne
+    private User user;
+
 
 
 }

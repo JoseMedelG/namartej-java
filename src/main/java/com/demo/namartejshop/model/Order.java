@@ -27,10 +27,9 @@ public class Order {
     @ManyToOne
     private Tiendas tiendas;
 
-//    @ManyToOne
-//    private Productos productos;
-//@ManyToOne
-//    private Employee empleado;
+    @ManyToOne
+    private User user;
+
 
     // Constructor vacío
         public Order() {}

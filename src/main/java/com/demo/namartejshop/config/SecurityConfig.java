@@ -50,11 +50,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/productos/edit/*").hasRole("ADMIN")
 
                         .requestMatchers(HttpMethod.GET, "/reviews").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/reviews/*").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/reviews").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/reviews").authenticated()
                         .requestMatchers(HttpMethod.GET, "/reviews/delete/*").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/reviews/new").hasRole("USER")
-                        .requestMatchers(HttpMethod.GET, "/reviews/edit/*").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/reviews/new").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/reviews/edit/*").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/reviews/*").permitAll()
 
                            //solo user normal, no admin
 //                        .requestMatchers(HttpMethod.GET, "/orders").hasRole("USER")
