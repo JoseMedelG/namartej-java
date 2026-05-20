@@ -56,7 +56,7 @@ Para esto vamos a usar Spring Security, que es un framework de seguridad para ap
 ## Paso 7: Crear vistas Thymeleaf para login y registro 
 
 + templates/auth/login.html (OK)
-+ templates/auth/register.html
++ templates/auth/register.html (ok)
 + templates/fragment/navbar.html - mostrar enlaces de login/register o
 longout dependiendo de si el usuario está autenticado o no, usando thymeleaf-extras-springsecurity6
 

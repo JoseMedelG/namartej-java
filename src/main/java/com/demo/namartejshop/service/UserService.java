@@ -59,6 +59,6 @@ public class UserService implements UserDetailsService {
         user.setEmail(form.getEmail());
         user.setPassword(passwordEncoder.encode(form.getPassword())); // password cifrada con bcrypt
         user.setRole(Role.ROLE_USER); // por defecto todos los usuarios registrados son ROLE_USER
-        return userRepository.save(user);
+        return userRepository.save(user); // Guarda el usuario
     }
 }
