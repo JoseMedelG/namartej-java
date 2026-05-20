@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="~{layout/head :: head('Listado Productos')}"></head>
 
@@ -16,7 +16,7 @@
         <span class="badge bg-secondary fs-6"
               th:text="|${#lists.size(productos)} prendas|">0 productos</span>
     </div>
-    <a th:href="@{/products/new}" class="btn btn-primary btn-sm mb-2">
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/products/new}" class="btn btn-primary btn-sm mb-2">
        <i class="fa-solid fa-plus"></i>
         Crear producto
     </a>
@@ -71,7 +71,7 @@
                        class="btn btn-sm btn-outline-primary flex-shrink-0">
                         <i class="fa-regular fa-eye me-1"></i>Ver
                     </a>
-                    <a th:href="@{/products/edit/{id}(id=${product.id})}"
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/products/edit/{id}(id=${product.id})}"
                        class="btn btn-sm btn-success btn-sm  flex-shrink-0">
                         <i class="fa-solid fa-pencil me-1"></i>Editar
                     </a>

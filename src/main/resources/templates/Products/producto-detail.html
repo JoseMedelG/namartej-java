@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{layout/head :: head('Reseñas')}"></head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -11,7 +11,7 @@
         <i class="fa-regular fa-comments text-primary me-2"></i> Opiniones de clientes
     </h1>
 
-    <a class="btn btn-success my-3"
+    <a class="btn btn-success my-3" sec:authorize="isAuthenticated()"
        th:href="@{/reviews/new(productoId=${producto.id})}">
         <i class="fa-solid fa-plus"></i> Escribe tu reseña
     </a>
@@ -54,21 +54,21 @@
    th:text="${review.productos.tienda.name}">Tienda</a>
 </span>
                     </div>
-                    <div class="my-3">
-                        <!-- Botón de borrar -->
-                        <a class="btn btn-secondary" th:href="@{/reviews/{id}(id=${review.id})}">
-                            <i class="fa-solid fa-eye mr-2"></i> Ver
-                        </a>
+<!--                    <div class="my-3">-->
+<!--                        &lt;!&ndash; Botón de borrar &ndash;&gt;-->
+<!--                        <a class="btn btn-secondary" th:href="@{/reviews/{id}(id=${review.id})}">-->
+<!--                            <i class="fa-solid fa-eye mr-2"></i> Ver-->
+<!--                        </a>-->
 
-                        <a class="btn btn-success" th:href="@{/reviews/edit/{id}(id=${review.id})}">
-                            <i class="fa-solid fa-pencil mr-2"></i> Editar
-                        </a>
+<!--                        <a class="btn btn-success" th:href="@{/reviews/edit/{id}(id=${review.id})}">-->
+<!--                            <i class="fa-solid fa-pencil mr-2"></i> Editar-->
+<!--                        </a>-->
 
-                        <a class="btn btn-danger" th:href="@{/reviews/delete/{id}(id=${review.id})}">
-                            <i class="fa-solid fa-trash mr-2"></i> Borrar
-                        </a>
+<!--                        <a class="btn btn-danger" th:href="@{/reviews/delete/{id}(id=${review.id})}">-->
+<!--                            <i class="fa-solid fa-trash mr-2"></i> Borrar-->
+<!--                        </a>-->
 
-                    </div>
+<!--                    </div>-->
                 </div>
             </div>
         </div>
