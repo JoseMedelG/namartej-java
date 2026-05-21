@@ -1,16 +1,14 @@
 package com.demo.namartejshop.controller;
 
 
-import com.demo.namartejshop.model.Order;
-import com.demo.namartejshop.model.OrderLine;
-import com.demo.namartejshop.model.Productos;
-import com.demo.namartejshop.model.Tiendas;
+import com.demo.namartejshop.model.*;
 import com.demo.namartejshop.model.enums.OrderStatus;
 import com.demo.namartejshop.repository.OrderLineRepository;
 import com.demo.namartejshop.repository.OrderRepository;
 import com.demo.namartejshop.repository.ProductosRepository;
 import com.demo.namartejshop.repository.TiendasRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -67,11 +65,12 @@ public class OrderController {
 //    }
 
     @PostMapping("orders")
-    public String save(@ModelAttribute Order order, @RequestParam Long tiendaId) {
+    public String save(@ModelAttribute Order order, @RequestParam Long tiendaId, @AuthenticationPrincipal User user) {
         Tiendas tienda = tiendasRepository.findById(tiendaId).orElseThrow();
         order.setTiendas(tienda);
         order.setStatus(OrderStatus.ORDEN_RECIBIDA);
         order.setFecha(LocalDateTime.now());
+        order.setUser(user);
         order.setTotalPrice(0d);
         orderRepository.save(order);
         return "redirect:/orders/" + order.getId();
