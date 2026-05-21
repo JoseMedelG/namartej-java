@@ -90,3 +90,7 @@ order-list.html ajustarlo para que:
 
 * si soy ADMIN que muestre todos los pedidos Order... (findAll())
 * si soy USER que muestre solo mis pedidos (findByUser(User user))
+
+## Paso 12: mosytarr usuario en details
+
+* Mostrar nombre de usuario en la review

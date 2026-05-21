@@ -4,11 +4,20 @@ import com.demo.namartejshop.model.Employee;
 import com.demo.namartejshop.model.Order;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findByUser_IdOrderByFechaDesc(Long id);
+
+    Long countByUser_Id(Long id);
+
+    @Query("""
+          SELECT SUM(o.totalPrice) from Order o where o.user.id = :userId
+""")
+    double calculateTotalMoneySpentByUserId(Long userId);
+
 
 }

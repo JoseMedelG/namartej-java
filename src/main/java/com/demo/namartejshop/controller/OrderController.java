@@ -44,7 +44,9 @@ public class OrderController {
         Order order = orderRepository.findById(id).orElseThrow();
         model.addAttribute("order", order);
         model.addAttribute("orderLines", orderLineRepository.findByOrder_Id(id));
-        // TODO cargar productos filtrando por tienda
+        model.addAttribute("countUserOrders", orderRepository.countByUser_Id(order.getUser().getId()));
+        model.addAttribute("totalMoneyUserSpent", orderRepository.calculateTotalMoneySpentByUserId(order.getUser().getId()));
+        //  cargar productos filtrando por tienda
         List<Productos> productos = productosRepository.findByTienda_IdOrderByPrice(order.getTiendas().getId());
         model.addAttribute("productos", productos);
         return "orders/order-detail";
