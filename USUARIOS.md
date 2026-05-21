@@ -83,3 +83,10 @@ En controller ReviewController, al crear una review, asignar el usuario autentic
 ## Paso 10: Crear usuario demo 
  * para probar la aplicación sin tener que registrarse cada vez, podemos crear un usuario
 demo en una clase de configuración o usando CommandLineRunner
+
+## Paso 11: adaptar listado de pedidos order list
+
+order-list.html ajustarlo para que:
+
+* si soy ADMIN que muestre todos los pedidos Order... (findAll())
+* si soy USER que muestre solo mis pedidos (findByUser(User user))

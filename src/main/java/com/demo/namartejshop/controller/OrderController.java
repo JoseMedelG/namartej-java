@@ -3,6 +3,7 @@ package com.demo.namartejshop.controller;
 
 import com.demo.namartejshop.model.*;
 import com.demo.namartejshop.model.enums.OrderStatus;
+import com.demo.namartejshop.model.enums.Role;
 import com.demo.namartejshop.repository.OrderLineRepository;
 import com.demo.namartejshop.repository.OrderRepository;
 import com.demo.namartejshop.repository.ProductosRepository;
@@ -27,8 +28,13 @@ public class OrderController {
     private final ProductosRepository productosRepository;
 
     @GetMapping("orders")
-    public String orders(Model model) {
-        model.addAttribute("orders", orderRepository.findAll());
+    public String orders(Model model, @AuthenticationPrincipal User user) {
+        if(user.getRole() == Role.ROLE_ADMIN){
+            model.addAttribute("orders", orderRepository.findAll());
+        } else {
+            model.addAttribute("orders", orderRepository.findByUser_IdOrderByFechaDesc(user.getId()));
+        }
+
         return "orders/order-list";
     }
 
