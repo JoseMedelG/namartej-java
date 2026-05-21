@@ -61,4 +61,6 @@ public class UserService implements UserDetailsService {
         user.setRole(Role.ROLE_USER); // por defecto todos los usuarios registrados son ROLE_USER
         return userRepository.save(user); // Guarda el usuario
     }
+
+    // TODO metodo para crear usuario admin
 }

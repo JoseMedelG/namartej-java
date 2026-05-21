@@ -23,6 +23,7 @@ Para esto vamos a usar Spring Security, que es un framework de seguridad para ap
 * enums/Role.java: ROLE_USER, ROLE_ADMIN
 * model/USER.java: id, username, password, email, roles (Set<Role>)
   * implements UserDetails de Spring Security
+* Opcionales: nif, phone, bio, postal code, profilePictureUrl, etc.
 
 ## Paso 3: Crear repositorio UserRepository {OK}
 

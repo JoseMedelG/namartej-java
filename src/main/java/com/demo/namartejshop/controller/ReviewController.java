@@ -1,10 +1,12 @@
 package com.demo.namartejshop.controller;
 
 import com.demo.namartejshop.model.Review;
+import com.demo.namartejshop.model.User;
 import com.demo.namartejshop.repository.ProductosRepository;
 import com.demo.namartejshop.repository.ReviewRepository;
 import com.demo.namartejshop.repository.TiendasRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -63,7 +65,8 @@ public class ReviewController {
     }
 
     @PostMapping("reviews")
-    public String saveReview(@ModelAttribute Review review){
+    public String saveReview(@ModelAttribute Review review, @AuthenticationPrincipal User user){
+        review.setUser(user);
         reviewRepository.save(review);
 
         if(review.getTiendas() != null)
