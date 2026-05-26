@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -63,4 +64,15 @@ public class UserService implements UserDetailsService {
     }
 
     // TODO metodo para crear usuario admin
+    public List<User> findAll() {
+        return userRepository.findAll();
+//                .stream().map(user -> )
+    }
+
+    public User findById(Long id){
+        return userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+    }
+
+
 }

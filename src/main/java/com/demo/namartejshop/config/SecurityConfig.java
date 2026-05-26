@@ -64,6 +64,9 @@ public class SecurityConfig {
                         // todos los roles
                         .requestMatchers(HttpMethod.GET, "/orders", "/orders/**", "/orders/new").authenticated()
 
+                        // panel usuario para admin
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+
                         // lo demas autenticar, no importa el rol
                         .anyRequest().authenticated()
         );
