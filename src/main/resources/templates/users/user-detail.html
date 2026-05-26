@@ -51,22 +51,35 @@
 
     </div>
 
-<!-- TODO
-
-id
-username
-email
-rol
-
-
-firstName
-lastName
-avatar
-
-
+<!-- TODO user STATS
 reviews: count
 orders: count, sum -->
+    <div class="row g-3 mb-4">
 
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <i class="fa-solid fa-star text-warning"></i>
+                    <h3 class="card-title my-2" th:text="${userStats.countReviews()}"></h3>
+                    <p class="card-text text-muted">Reseñas escritas</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <i></i>
+                    <h3></h3>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+    </div>
+    </div>
 </main>
 
 <footer th:replace="~{layout/footer :: footer}"></footer>

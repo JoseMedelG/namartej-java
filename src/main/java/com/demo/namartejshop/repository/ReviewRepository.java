@@ -10,6 +10,9 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findByTiendas_IdOrderByCreationDateDesc(Long tiendasId);
     List<Review> findByProductos_IdOrderByCreationDateDesc(Long productosId);
 
+    long countByUser_Id(Long id);
+    List<Review> findByUser_Id(Long id);
+
 
     List<Review> findByTiendas_IdAndRatingGreaterThanEqualOrderByCreationDateDesc(Long id, Integer rating);
 

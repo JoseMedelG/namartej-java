@@ -15,7 +15,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     Long countByUser_Id(Long id);
 
     @Query("""
-          SELECT SUM(o.totalPrice) from Order o where o.user.id = :userId
+          SELECT COALESCE(SUM(o.totalPrice), 0.0) from Order o where o.user.id = :userId
 """)
     double calculateTotalMoneySpentByUserId(Long userId);
 

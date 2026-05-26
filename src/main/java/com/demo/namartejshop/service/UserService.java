@@ -2,8 +2,11 @@ package com.demo.namartejshop.service;
 
 
 import com.demo.namartejshop.dto.RegisterForm;
+import com.demo.namartejshop.dto.UserStatsDTO;
 import com.demo.namartejshop.model.User;
 import com.demo.namartejshop.model.enums.Role;
+import com.demo.namartejshop.repository.OrderRepository;
+import com.demo.namartejshop.repository.ReviewRepository;
 import com.demo.namartejshop.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +24,8 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ReviewRepository reviewRepository;
+    private final OrderRepository orderRepository;
 
 
     //metodo parta buscar el usuario en base de dtos por su username
@@ -74,5 +79,14 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
     }
 
+    public UserStatsDTO findStatsById(Long id){
+        return new UserStatsDTO(
+                reviewRepository.countByUser_Id(id),
+                reviewRepository.findByUser_Id(id),
+                orderRepository.countByUser_Id(id),
+                orderRepository.findByUser_IdOrderByFechaDesc(id),
+                orderRepository.calculateTotalMoneySpentByUserId(id)
+        );
+    }
 
 }
