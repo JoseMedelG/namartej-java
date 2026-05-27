@@ -50,14 +50,12 @@
             </select>
         </div>
 
-
-
-        <!-- si se desactiva no sale por la UI en list y detail-->
-<!--        <div class="mb-3 form-check form-switch">-->
-<!--            <input type="checkbox" class="form-check-input" id="active"-->
-<!--                   th:field="*{active}">-->
-<!--            <label for="active" class="form-check-label">Activo</label>-->
-<!--        </div>-->
+<!--         si se desactiva no sale por la UI en list y detail-->
+        <div class="mb-3 form-check" th:if="${edit}">
+            <input type="checkbox" class="form-check-input" id="active"
+                   th:field="*{active}">
+            <label for="active" class="form-check-label">Activo</label>
+        </div>
 
         <button type="submit" class="btn btn-success">
             <i class="fa-solid fa-floppy-disk"></i> Guardar

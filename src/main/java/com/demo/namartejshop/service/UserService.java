@@ -66,6 +66,7 @@ public class UserService implements UserDetailsService {
         user.setEmail(form.getEmail());
         user.setPassword(passwordEncoder.encode(form.getPassword())); // password cifrada con bcrypt
         user.setRole(Role.ROLE_USER); // por defecto todos los usuarios registrados son ROLE_USER
+        user.setActive(true); // por defecto todos los usuarios registrados están activos
         return userRepository.save(user); // Guarda el usuario
     }
 
@@ -125,6 +126,8 @@ public class UserService implements UserDetailsService {
         userDB.setUsername(userForm.getUsername());
         userDB.setEmail(userForm.getEmail());
         userDB.setRole(userForm.getRole());
+        // TODO un admin podría decativarse a si mismo, hay que impedirlo lanzando Runtime...
+        userDB.setActive(userForm.getActive());
 
         if(StringUtils.hasText(userForm.getPassword()))
             userDB.setPassword(passwordEncoder.encode(userForm.getPassword()));
