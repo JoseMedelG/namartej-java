@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -89,4 +90,34 @@ public class UserService implements UserDetailsService {
         );
     }
 
+    public User create(User user){
+        if(userRepository.existsByUsername(user.getUsername()))
+            throw new RuntimeException("Nombre de usuario ya existente");
+
+        if(userRepository.existsByEmail(user.getEmail()))
+            throw new RuntimeException("El email ya existe");
+
+//        if(user.getPassword() == null || user.getPassword().isBlank())
+//            throw new RuntimeException("La contraseña no puede estar vacía");
+
+        if(!StringUtils.hasText(user.getPassword()))
+            throw new RuntimeException("La contraseña no puede estar vacía");
+
+        user.setPassword(passwordEncoder.encode(user.getPassword())); // password cifrada con bcrypt
+        return userRepository.save(user);
+
+    }
+
+    public User update(User userForm){
+        User userDB = findById(userForm.getId()); // traigo el usuario de la Base de Datos
+
+        userDB.setUsername(userForm.getUsername());
+        userDB.setEmail(userForm.getEmail());
+        userDB.setRole(userForm.getRole());
+
+        if(StringUtils.hasText(userForm.getPassword()))
+            userDB.setPassword(passwordEncoder.encode(userForm.getPassword()));
+
+        return userRepository.save(userDB);
+    }
 }

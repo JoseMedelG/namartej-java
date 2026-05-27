@@ -53,17 +53,27 @@ public class UserController {
     }
 
     @PostMapping("admin/users")
-    public String save(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
+    public String save(@ModelAttribute User user, RedirectAttributes
+            rediA) {
 
         // Creación
-        if (user.getRole() == null) {
-//            user.setRole(Role.USER); // por defecto, si no se ha seleccionado un rol, se asigna USER
-        } else {
-            // Edicion
+        try {
+            if (user.getId() == null) {
+                userService.create(user);
+                rediA.addFlashAttribute("message", "Usuario creado correctamente");
+            } else {
+                // Edicion
+                userService.update(user);
+                rediA.addFlashAttribute("message", "Usuario actualizado correctamente");
+            }
 
+        } catch (Exception e) {
+            rediA.addFlashAttribute("error", e.getMessage());
+            return user.getId() == null ?
+                    "redirect:/admin/users/new" : "redirect:/admin/users/edit" + user.getId();
         }
 
-        return null;
+        return "redirect:/admin/users";
 
 
         // user Form
