@@ -111,6 +111,17 @@ public class UserService implements UserDetailsService {
     public User update(User userForm){
         User userDB = findById(userForm.getId()); // traigo el usuario de la Base de Datos
 
+
+        Optional<User>userOpt = userRepository.findByUsername(userForm.getUsername());
+        if(userOpt.isPresent() && !userOpt.get().getId().equals(userDB.getId()))
+            throw new RuntimeException("Nombre de usuario ya existente");
+
+        userRepository.findByEmail(userForm.getEmail())
+                .filter(user -> !user.getId().equals(userDB.getId()))
+                .ifPresent(user -> {
+                    throw new RuntimeException("Este email ya existe");
+                });
+
         userDB.setUsername(userForm.getUsername());
         userDB.setEmail(userForm.getEmail());
         userDB.setRole(userForm.getRole());

@@ -70,7 +70,7 @@ public class UserController {
         } catch (Exception e) {
             rediA.addFlashAttribute("error", e.getMessage());
             return user.getId() == null ?
-                    "redirect:/admin/users/new" : "redirect:/admin/users/edit" + user.getId();
+                    "redirect:/admin/users/new" : "redirect:/admin/users/edit/" + user.getId();
         }
 
         return "redirect:/admin/users";
