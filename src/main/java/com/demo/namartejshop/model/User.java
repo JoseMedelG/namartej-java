@@ -38,11 +38,18 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Role role;
 
+    private Boolean active;
 
     // Importante entender bien este metodo
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    // Spring security llama este metodo, si active es false no la deja hacer login
+    @Override
+    public boolean isEnabled(){
+        return active != null && active; // true or false
     }
 
 }
