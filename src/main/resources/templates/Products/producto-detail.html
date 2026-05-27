@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{layout/head :: head('Reseñas')}"></head>
+<head th:replace="~{layout/head :: head('Detalle Producto')}"></head>
 <body class="d-flex flex-column min-vh-100">
 
 <nav th:replace="~{layout/navbar :: navbar}"></nav>
@@ -49,7 +49,7 @@
                            th:text="${review.productos.nameProduct}">Artículo</a>
                         <span th:if="${review.productos.tienda != null}"
                               class="text-muted">
-— en
+
 <a th:href="@{/restaurants/{id}(id=${review.productos.tienda.id})}"
    th:text="${review.productos.tienda.name}">Tienda</a>
 </span>
@@ -72,3 +72,11 @@
                 </div>
             </div>
         </div>
+
+</main>
+
+<footer th:replace="~{layout/footer :: footer}"></footer>
+<script th:replace="~{layout/footer :: scripts}"></script>
+
+</body>
+</html>
