@@ -7,7 +7,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @AllArgsConstructor
 @Controller
@@ -32,16 +35,37 @@ public class UserController {
     }
 
     @GetMapping("admin/users/new")
-    public String newUser(Model model){
+    public String newUser(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("roles", Role.values());
         model.addAttribute("edit", false);
         return "users/user-form";
     }
 
-    //@GetMapping("admin/users/edit/{id}")
+    @GetMapping("admin/users/edit/{id}")
+    public String editUser(Model model, @PathVariable Long id) {
+        User user = userService.findById(id);
+        user.setPassword(null); // No devolver esta password cifrada
+        model.addAttribute("user", user);
+        model.addAttribute("roles", Role.values());
+        model.addAttribute("edit", true);
+        return "users/user-form";
+    }
+
+    @PostMapping("admin/users")
+    public String save(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
+
+        // Creación
+        if (user.getRole() == null) {
+//            user.setRole(Role.USER); // por defecto, si no se ha seleccionado un rol, se asigna USER
+        } else {
+            // Edicion
+
+        }
+
+        return null;
 
 
-
-    // user Form
+        // user Form
+    }
 }
