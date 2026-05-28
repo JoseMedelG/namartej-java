@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -88,7 +89,14 @@ public class UserController {
 
         return "redirect:/admin/users";
 
+    }
 
-        // user Form
+    // GetMapping profile
+    @GetMapping("profile")
+    public String profile(Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("user", userService.findById(user.getId())); // User
+        model.addAttribute("userStats", userService.findStatsById(user.getId())); // UserStatsDTO
+        return "users/user-detail";
     }
 }
+
