@@ -40,6 +40,8 @@ public class User implements UserDetails {
 
     private Boolean active;
 
+    private String imageUrl;
+
     // Importante entender bien este metodo
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

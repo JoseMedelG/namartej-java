@@ -16,7 +16,7 @@
 
     <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
 
-    <form th:action="@{/admin/users}" th:object="${user}" method="post">
+    <form th:action="@{/admin/users}" th:object="${user}" method="post" enctype="multipart/form-data">
        <div class="mb-3" th:if="${edit}">
            <label class="form-label" for="id">ID</label>
         <input type="number" class="form-control" id="id" th:field="*{id}" readonly>
@@ -55,6 +55,14 @@
             <input type="checkbox" class="form-check-input" id="active"
                    th:field="*{active}">
             <label for="active" class="form-check-label">Activo</label>
+        </div>
+
+        <div class="mb-3">
+            <label for="imageFile" class="form-label">Imagen</label>
+            <input type="file" class="form-control" id="imageFile"
+                   name="imageFile" accept="image/*">
+            <img th:if="*{imageUrl}" th:src="@{*{imageUrl}}"
+                 class="mt-2 img-thumbnail" height="100" alt="user avatar">
         </div>
 
         <button type="submit" class="btn btn-success">
