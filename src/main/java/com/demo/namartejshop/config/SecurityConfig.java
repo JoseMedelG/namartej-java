@@ -28,8 +28,9 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(
                 auth -> auth
-                        // Rutas publicas tanto GET como POST
-                .requestMatchers("/hola", "/adios", "/login", "/register",
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/hola", "/adios", "/login", "/register",
+                                "/uploads/**",
                                 "/css/**", "/images/**", "/webjars/**").permitAll()
 
                 // listado y detalles publicos solo por GET, no POST

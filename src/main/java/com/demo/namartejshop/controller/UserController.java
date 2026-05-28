@@ -2,6 +2,7 @@ package com.demo.namartejshop.controller;
 
 import com.demo.namartejshop.model.User;
 import com.demo.namartejshop.model.enums.Role;
+import com.demo.namartejshop.service.FileService;
 import com.demo.namartejshop.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -20,6 +21,7 @@ public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
     private UserService userService;
+    private FileService fileService;
 
     // user List
     @GetMapping("admin/users")
@@ -61,7 +63,10 @@ public class UserController {
             RedirectAttributes rediA,
             @RequestParam("imageFile") MultipartFile imageFile){
         log.info("Guardando user: {}", user.getUsername());
-        log.info("imagen recibida {}", imageFile);
+
+        String imageUrl = fileService.store(imageFile);
+        if(imageUrl != null)
+            user.setImageUrl(imageUrl);
 
         // Creación
         try {

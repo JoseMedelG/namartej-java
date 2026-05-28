@@ -126,6 +126,7 @@ public class UserService implements UserDetailsService {
         userDB.setUsername(userForm.getUsername());
         userDB.setEmail(userForm.getEmail());
         userDB.setRole(userForm.getRole());
+        userDB.setImageUrl(userForm.getImageUrl());
         // TODO un admin podría decativarse a si mismo, hay que impedirlo lanzando Runtime...
         userDB.setActive(userForm.getActive());
 
